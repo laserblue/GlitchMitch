@@ -1,0 +1,579 @@
+The main idea is to simulate a rural maize breeding research station using fantasy adventures to unlock rooms, equipment, capabilities etc.
+This is to be a nonviolent game/simulation.No medieval sword play, no gory pools of blood, no stealing expensive cars, no exterminating populations or chucking the grand Llama over a waterfall. Also, NO swamp talk.
+
+I really like the peteroravec.com website and would like to make something similar that anyone interested in maize breeding can visit and explore.
+
+Goal #1: Get modular .js scenes in a scene folder running from ./js/scenes folder.
+NOTE: No ES6 transpiler like Babel installed so may need to add filenames and paths to html file head section to import external scene files (?)
+Possibly: add Babel
+
+GOAL: ADD touchscreen player controls for Android touchscreen so I can work offline on Android phone.
+GOAL: Get photonstorm-phaser3-project-template going with ES6 and modular scene files. (Phaser 3.55.2, Webpack and Babel template) Get scenes from scene folder importing and working with ES6 source code
+GOAL: Add Level 1 Fantasy scenes (King's Banquet, World overview, village, Corn and Apple festival, village little people wrestling, Castle interior and story tapestries, secret garden)
+GOAL: Load CSV tile map of building exterior and tile map of building interior with correct tiles (so can see and enter building and explore unlocked areas of building interior first and second floors)
+GOAL: add a blank layer and put stake tiles at sides of field for aisles between ranges marking
+GOAL: Add code to kill game when user chooses EXIT or Credits scrolling finished once or twice.
+GOAL: Create Assets for Level 1 Workroom scene (Building interior, balding NPC, NPC dialogue, NPC stamping animations,Coin Envelope number stamping station, blank coin envelopes, self-advancing number stamper with 6 numbers, numbered coin envelopes, ink bottle, numbering machine ink pads, stylus for changing starting numbers, player stamping animation, dream screen ripples and sound)
+Goal: Create all assets for Level 1 Dream Sequence (King's Quest)
+Goal: Create intro cutscene with player walking along rural gravel road in very early morning
+
+
+(NOTE: may need to put a comment with globals filename, filename etc. for Glitch linter to import files. See calm-potassium. Express routes correct?? put scripts in body?? calm-potassium works fine with scripts in head (MIND THE ORDER OF FILES), need to use app.get, import ???)
+
+Goal: running:  splash screen, menu screen with menu items(Start/Play game, Options, Credits),
+
+In progress: options screen with menu items(toggle Sound, toggle Music),
+
+Done: a background image game scene stand-in, a background image 'game over' scene and a background image scrolling credits scene 
+DONE: In Progress: get scrolling text working in Credits scene (may require loading bitmap text )
+
+Goal: load Options Scene (Vavilov office pic) from js/SceneMain.js
+
+DONE: Goal: create working menu interactive text to change scenes
+
+Goal: move container bodies with keyboard keys, then with touchCursor or Swipe Plugins (hopefully it works with Phaser 3)
+Goal: figure out how to move a container (body?) with keyboard keys
+Goal: Add Touch cursor plug-in or Swipe plugin for mobile development work and preview
+Goal: sync sprite animations with movement of container
+Goal: use texture render to add labels/names to sprites
+
+Done: Goal: load a csv tile map // not correct tileset loaded or wrong height, width ??
+
+Goal: load an outdoors/field/building exterior scene
+In progress: added csv file but used wrong tileset so map had wrong tiles
+
+Goal: create an exterior building scene
+Goal: create an interior building scene with blacked out locked areas - 2 floors
+
+Goal: seamlessly transition from exterior building scene to interior building scene when door threshold crossed by sprite
+
+Goal: allow exploration of upper floor and workroom on first floor
+Goal: create csv map
+      upper floor: open areas - conference room, men's washroom, women's washroom, kitchen
+      upper floor: locked areas/room - Plant Breeder's Office at the west end of the E-W hall, LTSP Server room, Research Station Manager's Office, Secretary/Administrative Assistant Office, Small meeting rooms/offices, shower
+      upper floor: unlocked areas/rooms - conference room/supervised course room - conference room table, chairs, front wall presentation/projection area (BIG screen tv), personal holographic projection/virtual reality projection devices, automated mentor kiosk/live video mentor connection
+                                        - kitchen - large rectangular table surrounded by chairs, a Gene Rummy pack on the table, refrigerator containing a bottle of water and a sandwich, stove/oven, sink, counter, cupboards 
+
+Goal: create elderly male pattern balding NPC for initial encounter
+Goal: create props for stamping numbers on coin envelopes by elderly NPC and by player
+Goal: create dialog flow between player and elderly NPC
+Goal: Create first fantasy adventure and task: King's Quest (medieval)
+
+Goal: On completion of first Level 1 quest, reward player with Jab planters(4), White pickup truck, unlocked seed storage area and automated mentor answers to questions on a career in plant breeding
+
+DONE - Goal: get background image scenes running
+DONE - Goal: Get load progress screen running - simple code
+
+DONE - Goal: load finite state machine starter code as a game scene with text labeled containers with sprite animations
+             - based on slight modifications to Mark Kelly's phaser-fsm-example project on Glitch (https://www.mkelly.me/blog/phaser-finite-state-machine/)
+=====================================================================================================================================
+
+photonstorm-phaser3-project-template - Phaser 3.55.2, Webpack, ES6 (so I can use modern Javascript and modular files)
+Phaser 3 - the-great-conversation-bots (remix of finite state machine(fsm) starter with sprite name text in containers with animated sprite)
+Phaser 3 - calm-potassium - remix of phaser-many-scenes1 with all js files in js folder
+
+Phaser 3.16.2 - lilac-duckling (original finite state machine starter - no alterations yet) 
+Phaser 3.16.2 - chalk-wedelia (original finite state machine starter - no alterations)
+
+Phaser 3.21.0 (phaser.js) - calm-potassium example for loading external scene files (works if .js files put in js folder and path for scripts in index.html changed to correspond. loader is using github assets folder)
+Phaser 3.16.2 (Node pkg) - hexagonal-professor "A sample app illustrating how to use phaser-tiled-json-external-loader to load Tiled tilemaps with external tilesets."
+
+Phaser 3.19.0 - pie-ferret (example Phaser code with background image and particle emitter)
+Phaser 2.6.2 - marbled-santanaraptor (Glitch Game Club Phaser examples)
+Phaser 2.6.2 (CDN)- spotted-polka (original platformer game assets, (note in head of index.html: <script>src="js/game.js"</script>))
+Phaser 2.6.2 (CDN) - alpine midnight (same as spotted polka but with additional code that makes sprite change size when colliding with another sprite)
+Phaser 2.4 - laserblue-mitchymaize(private, GitHub clone and GitHub fork of Matt MacFarland's Game States Tutorial - the DRY Mixins code was a bit too advanced for me at the time)
+
+SQLite3 - slime-aspen (code exploration of SQLite3 using lists of Great Ideas, authors, web links)
+
+Glitch.com  - https://www.nexmo.com/blog/2019/07/05/javascript-hotline-with-opentok-and-nodejs-dr (for live Mentor linkage)
+Node.js - https://cdn.glitch.com/6d561a98-036e-47a6-b152-a2a66a73d13e/YouGotThisZine.pdf?1519043698801
+
+glitch.com/~intro-to-node
+glitch.com/website-starter-kit
+glitch.com/~async-await-playground
+===================================================================================================================================== 
+
+Opening Scene - player is imagined as being on a doctor prescribed early morning walk on the East-West gravel road moving east
+              - player can explore 2 floors of an unlocked rural maize breeding research station and meets an elderly, hard of hearing, balding (male) NPC that mistakes the player for a new employee.               
+              - the motivation(?) for the opening scene's curiosity-driven exploration of the building is a bit awkward (most people don't just enter a building without knocking - maybe player is seeking washroom and knocks but gets no answer ?????)
+              - gravel road, laneway, bare soil/worked 40 acre field with gravel roads on east and north sides,front lawn of research station and building exterior
+              - building has door on north side, near west end (75%-80% of length). threshold crossing triggers loading of building interior tilemap 
+              - player can explore workroom on first floor, climb stairs to second floor and explore E-W hallway, N-S hallway, Conference room, men's and women's washrooms and kitchen. 
+                Workroom and washroom on first floor are unlocked
+                Conference room/Supervised Courseroom on second floor in E-W hallway is unlocked. 
+                Conference room contains a Mu-Lambda-165-type automated A.I. mentor multi-media kiosk with "video player" 
+                (videos on experiential education and well-indexed short videos of experts telling relevant advice called up by A.I. mentor based on player open inquiry. 
+                and also access to online and offline mentors. 
+                
+                sample videos for developers and player to browse (probably requiring permission to embed within "game"):
+                
+                Big Questions Internet Research Activities
+                
+                A list of videos and links primarily for the game developers of this serious game:
+                (The videos for the automated A.I. mentor ExTRA™ system are not for browsing but are retrieved for viewing by the A.I. mentor based on player questions or selection from listed questions.) 
+                   OEB MidSummit - Roger Schank #2
+                   https://www.youtube.com/watch?v=B-iNDS4AoUE
+                   * Mitchy's Maize is to be an example of a story-based curriculum based on the Socratic Arts Goal-based scenario development tool.
+                   
+                   
+                   Mu Lambda 165 (programmed for automated information replies) - Can I Be Of Assistance?
+                   https://www.youtube.com/watch?v=6AKdfTMVJUw
+                   * An example of a talking head from the 1970's television series 'The Starlost' about three young people exploring a Space Ark and trying to save it from destruction.
+                     Something like Mu Lambda 165 could be used as the automated mentor until a more professional version like Darwin's Synthetic Interview can be built.
+                     
+                   David Thornburg on the Evolving Classroom (Big Thinkers Series)
+                   https://www.youtube.com/watch?v=R4CeceFQAJ8
+                   
+                   Why Simulations Matter for Learning - Roger Schank
+                   https://www.youtube.com/watch?v=DV7EcFVZwzo
+                   
+                   Corporate Memory - Roger Schank 
+                   https://www.youtube.com/watch?v=VXIJt021VkY&t=36s
+                   
+                   VISTA (Virtual International Science and Technology Academy)
+                   Designer Genes Rotation of VISTA's Year in Health Sciences
+                   http://vista.engines4ed.org/designerGenes/index.htm
+                   
+                   EPA4109.MOV - This is an example of an expert's story that might be relevant to a person's work that can be retrieved by the A.I. mentor.
+                   https://www.youtube.com/watch?v=I7fRGjuL92o
+                   
+                   Socratic Arts ExTra™ - this is an example of a working A.I. automated mentor
+                   https://www.socraticarts.com/solutions/technology-solutions/extra
+                   
+                   Sydney Brenner - Self Motivation and Independent Learning
+                   https://youtu.be/0TJleHaHIsk
+                
+                   Robert and Michele Root-Bernstein
+                   Art + Science = Innovation
+                   Thinking Tools
+                   https://youtu.be/XPMbCnEapQU
+                   
+                   Socratic Arts Goal-Based Scenario Tool(TM)
+                   https://www.socraticarts.com/solutions/technology-solutions/goal-based-scenario-tool
+                   
+                   Mentoring at XTOL (eXperiential Teaching OnLine)
+                   https://youtu.be/HG-Rv6SXMDQ
+                   
+                Kitchen in N-S hallway on second floor is unlocked - Katrin Becker's Gene Rummy pack on table (http://minkhollow.ca/gene-rummy/), bottle of water and vegan roast beef sandwich in refrigerator.
+                Men's washroom and Women's washroom in N-S hallway are unlocked
+                Seed storage area on first floor is locked. Completion of 'Quest for the Rose' required to open.
+                Garage area on first floor is locked.
+                Door to garage area and stairs on east side of second floor kitchen is locked.
+                Research station manager's office on second floor is locked.
+                Plant Breeder's office with poster of LINK on door is locked.
+                LTSP server room on second floor is locked.
+                Other offices/meeting rooms on second floor are locked.
+                Secretary/Admin Assistant room on second floor is locked.
+                Entrance to secret lab is locked. (Door at north end of N-S hallway on second floor - shower)
+                
+   Opening Scene Dialog with NPC: 
+   NPC is working in workroom on high stool at counter on south side stamping numbers onto the top left corner of #3 coin envelopes
+   NPC has back to player. NPC is hard of hearing and mentions waxy ears. "Eh? What's that? I don't hear very well anymore. I have waxy ears. You will have to speak up."
+   Player can respond with canned replies E.g. "Hello!"","Who are you?", "What is your name?" etc. 
+   Knowledgeable players can respond with questions regarding wet or dry earwax or waxy maize
+   (https://en.wikipedia.org/wiki/Waxy_corn)(https://www.nytimes.com/2006/01/29/science/japanese-scientists-identify-ear-wax-gene.html)
+   NPC explains what he is doing (creating a set of 1,500 numbered envelopes for planting a maize inbreeding nursery - (upgrade to laser printer and labels or direct printing on envelopes available on higher level)
+   NPC mistakes player for new employee. 
+   NPC needs to attend to some unmentioned task and asks player to take over the numbering of the coin envelopes
+   Player must stamp a certain number of envelopes before Level 1 fantasy dream sequence kicks in.(player can still explore second floor if not explored already)
+   Player can explore exterior but is bound on all four sides. Field is clumpy, possibly plowed, with very dark brown soil. gravel roads on north side and east side but player can't go past east, south, or west property lines or north side of E-W gravel road north of property. Fences on south and west sides
+   There are trees and hedges on the east and west sides of the building site and maybe some equipment parked south of the building - not much to see at first anyway
+   
+   
+  Level 1: Quest for the Rose (Medieval Fantasy) Scene 1
+      - The player is in a castle at a jousting tournament feast (roast chicken, orange carrots, bread, apple juice) wearing armour but not helmet
+      - King at head table gives speech to champions and player is volunteered by King to undertake the Quest for the Rose
+      - Level completion unlocks seed storage area,4 jab planters and a white half ton pickup truck
+      
+      King gives player white workhorse, bag of gold, gemstone ring and a sword (there will be no sword fighting in this simulation/fantasy but sword could be used to cut a rose stem)
+  
+  Scene 2:  early morning. crowing rooster. Player sets out on road
+  
+  Abandoned idea: player encounters group of people on road and asked how many going to Londontown (player's destination). If player answers riddle incorrectly, player is pulled off horse by crowd and game ends.
+  
+  Player moves on worldview map to a small town. 
+  There is a crowd in the town square. 
+  The Player is greeted by an Augustinian Friar who explains that the festivities are for a corn and apple festival and invites the player to enjoy the entertainment and roasted sweet maize.
+  The player is invited to wager on a 'little people' wrestling tournament (I welcome any suggestions for a nonviolent alternative that does not involve gambling or 'little people' (You Can't Ask That - Short Statured https://www.youtube.com/watch?v=qHgDG5Ouo6s)
+  The wrestlers in purple shorts always win the single matches. (this might cause some confusion with respect to the use of the word 'dominant' in genetics so any better idea is most welcome )
+  The tag team wrestlers in white shorts win 25% of the time.(All matches will be shown as a cloud of confusion with a few stop motion poses like head lock or toehold etc.)
+  
+  There is a genetics related reason for why the depicted wrestlers are short statured rather than normal height. 
+  completion of the level unlocks short, informative videos and links to BIG QUESTIONS, projects and genetics videos e.g. Genetics of dwarfism (https://www.youtube.com/watch?v=Lg7xdHkw_xI), Achondroplasia: Genetic Causes (https://www.youtube.com/watch?v=Bn7eGRsYYGI)
+  (The amount of gold the player wins or loses is not important for the game at this time) The wrestling matches give a hint regarding how to solve the quest puzzle.
+  The player's horse is put in a stable with hay, oats and blackstrap molasses
+  At the end of the day's entertainment, the friar takes his leave and tells the player that a tall glass of apple juice awaits him on a table in his lodgings.
+  (https://biologydictionary.net/complete-dominance/)
+  
+   What makes a gene dominant? - Researchophiles! 09 https://www.youtube.com/watch?v=cHaRc1cz3cs
+   Dominance vs. Recessiveness (https://www.youtube.com/watch?v=aKnP1szGgo8)
+  Having Six Fingers Is a Dominant Trait - https://www.youtube.com/watch?v=yZZy57v-e1o
+  Huntington Disease: Dominant Allele - https://www.youtube.com/watch?v=HaC5dYVzvx0
+  Dominant vs. Recessive Alleles: Bite Sci-zed - https://www.youtube.com/watch?v=Zf2hnFhyJFI
+  Allele Geneotype Phenotype Interactive Illustration - https://www.youtube.com/watch?v=MduV6CJo88g 
+  https://en.m.wikipedia.org/wiki/Eye_color
+  
+  Scene 3:  player sets off down the road again.
+  player encounters elderly man with cane on road who requests a ride to Londontown.('old folks' posture - https://www.thestar.com/life/health_wellness/2014/06/16/how_to_get_rid_of_old_folks_posture.html)
+  Player should agree to give elderly man a ride. Cutscene shows stopping, getting off horse and helping elderly man onto horse.
+  If player refuses to give elderly man a ride to Londontown, the quest can't be completed at all.(Player will not be told this)
+  At town limits, elderly man thanks player for ride and gives player 2 seeds or two packets of seeds.
+  Shortly thereafter, player sees old vine covered castle next to an oak tree. 
+  
+  Scene 4: Player enters castle.
+  Tapestries in the main hall tell a sleeping beauty story and how to obtain a sweet pea plant with white flowers to awaken her.(possibly some punnet squares on the tapestries???)
+  Spending longer than a few minutes in the main hall can get the player pulled by the ear into a porcelain dish washing room for a certain amount of penalty time. (probably historically inaccurate)
+  Player enters a corner tower with a winding staircase and finds sleeping beauty who he has been tasked to return to the King. (steeds but no ogres or red dragons in this plot)
+  There is an empty flower vase beside a mirror. Placing a white sweet pea flower into this vase awakens sleeping beauty. 
+  The tapestries show how to enter a secret garden from the tower room by descending another winding staircase. 
+  The player must plant the two seeds or two packets of seeds in individual beds in the secret garden and return after a specific amount of time. 
+  
+  
+  I wanted to use roses but they have incomplete dominance for flower color.
+  Sweet pea flower colors have complete dominance and were used by Punnett. Friar Mendel also used peas, so maybe sweet peas are a better choice than roses. 
+  I need flowers whose color is controlled with complete dominance. Roses have incomplete dominance so cross of red and white is pink.Same for tulips, carnations, and snapdragons.(https://biologydictionary.net/incomplete-dominance/) 
+  Roses could still be used but I would prefer a flower with 2 colors only that shows only one of 2 colors in the F1.
+  white maize and purple maize? sweet pea flowers?
+  file:///home/chronos/u-a1e5828f754872f5fe5bfeb4bfd5a6787b98584d/MyFiles/Downloads/ubc_1925_a4_f5_i5.pdf
+   Complete dominance at both gene pairs, but either gene when homozygous recessive,  hides the effect of the other gene.
+   http://lifesci.dls.rutgers.edu/~mcguire/Toolbox-Demo/Epistasis%20-up/epistasis1-5.htm
+  http://www.lathyrus-seed.com/lathyrusinfo/sweetpeas/genetics.html
+  
+  http://ib.berkeley.edu/courses/ib162/Week2.htm
+  http://www.biology.arizona.edu/mendelian_genetics/problem_sets/monohybrid_cross/monohybrid_cross.html
+  http://www.esp.org/foundations/genetics/classical/browse/index.html
+  https://www.ducksters.com/science/biology/genetics.php
+  https://www.wyzant.com/resources/lessons/science/biology/mendels-laws
+  https://www.thoughtco.com/monohybrid-cross-a-genetics-definition-373473
+  
+  I want to stay very far away from historically-based lectures and exams that require a student to memorize names and dates etc.(e.g. Neela Bakore Tutorials, Genetics - Mendel & his contribution (https://www.youtube.com/watch?v=2ycwGQUjmJY see whiteboard at around 3:13/20:07) 
+  This lecture also contains a few minor factual errors that may have been just slips of memory and tongue. E.g. life cycle length of pea plants versus life cycle length of drosophila 
+ 
+  The stress will be on application and the most up-to-date understandings.
+  Later, I want to force the player into making an incorrect prediction due to ignorance of incomplete dominance.
+  
+  The tapestries explain that a second planting of seeds is required to obtain a white sweet pea flower. (this still true with incomplete dominance but the appearance of a third color might create confusion later)
+  The player returns to the garden to find a small number of white sweet pea flowers among purple flowers (maybe in the plot for one of the first seeds)
+  The player cuts the stem of a sweet pea plant with white flowers with a sword and places the plant with white flowers in the vase beside the mirror.
+  Sleeping beauty awakens and level one ends.
+  Player is rewarded with 4 jab planters in the garage, a white half ton pickup in the garage and an unlocked seed storage room at the maize plant breeding research station.
+  Also, the automated mentor in the conference room has informational videos regarding Plant Breeding, Maize Breeding, genetics, dominance, dwarfism, etc. The mentor can be asked questions.
+  If desired, there are also BIG QUESTIONS that can be worked on with team members MMO style in the conference room.
+      
+  Level 2
+  Casino Royale (Spy Fantasy - Working with Statistics and 'Probability as the Logic of Science'): 
+  Player can also consult the automated A.I. in the conference room and view short question answering videos on a career in plant breeding, plant breeding in general and maize genetics 
+  
+  Limited Duration Task:
+  Prepare seed to be planted in the Maize Inbreeding Nursery in the Spring
+  Refer to a prepared Planting Seed List of Inbred Nursery seed from the previous year (for planting in the new year) and fill numbered envelopes with the correct number of kernels from the correct inventory envelope.
+  Use shoebox corners and long sharpened pencils to count seed and fill envelopes.
+  Place filled envelopes in numerical order in small white "vault boxes" with envelopes propped up by small glass juice bottles
+  
+  Dream Sequence trigger: This envelope is full of yellow glass not maize (?????) "Une autre carte, monsieur?"
+  
+  Level 2-2 
+  
+  Measure out and mark Inbreeding Nursery Ranges (range marking cutscene and possibly "try to drive a straight line" wobbly steering tractor mini-game)
+  plant Inbreeding Nursery with jab planter according to Planting Plan diagram. (upgrade to 4-row maize plot planter with cones) 
+  plant offsite Adapting Maize Populations
+  plant Sibbing Nursery
+  plant Hand Crossing Block
+  plant offsite crossing blocks 
+  
+  prepare seed for planting of Yield Trials (upgrade to automated envelope filler)
+  plant Yield Trials with plot planter (upgrade to vacuum planter)
+  
+  thinning of Yield Trials with long handled hoes with goosenecks and triangular blades. Use of hoes with lower-case m shaped blades and rectangular blades to chop out and even up the ends of aisles between plots.
+  
+  Yield Trial Observations Work
+  
+  Pollination Work
+  
+  Harvest of offsite Populations
+  Harvest of Inbreds, Sibbing Nursery, hand crossing blocks, offsite crossing blocks and Adapting populations
+  Drying of all harvested ears
+  
+  Harvest of Yield Trials
+  Yield Trial Reports
+  
+  Shelling and Inventory of all Nurseries and Crossing Blocks
+  
+  Yield Trial work for other companies as received from Secretary/Admin Assistant
+ --------------------------------------------------------------
+ Level 10: The Dirty Dozen: "Very pretty kernel, very pretty!"
+           (Germplasm Enhancement Maize and Glass Gem Maize)
+  --------------------------------------------------------------------------------
+  Greenhouse
+---------------------------------------------------------------------------------
+  Genetics and experimental design puzzles in dream sequences
+  ---------------------------------------------------------------------------------
+  Lab
+  soil tests
+  tests for protein content, nitrogen, iron, zinc, vitamin A 
+  growth chamber with multicolored lighting
+  electrophoresis
+  
+  Genetics Lab
+  Genetics Lab work (Secret Lab)
+  
+  mRNA
+  tRNA
+  PCR
+  genomic sequencing
+  --------------------------------------------------------------------------------------------------------------
+  Assigned and self-selected research work (including BIG QUESTIONS MMO/group collaborative internet research)
+  --------------------------------------------------------------------------------------------------------------
+  Unlocked equipment
+  tractor, 
+  (4-row, 30 in. maize planter), 
+  cones for maize plot planting,
+  Dark brown half ton pickup with diesel fuel tank for tractor (pump handle/electric)
+  Gleaner K2 3-row plot combine (has modifications for plot work and sample weight and moisture content electronics)
+  drying cupboard
+  long handled hoes
+  backpack sprayers
+  disc harrow,
+  field cultivator,
+  packers,
+  field mower or chain flail,
+  moldboard plough,
+  row cultivator,
+  tractor side-mounted spray tanks and undercarriage spray boom, 
+  weather station with rain gauge and min-max thermometer
+  
+  unit counting balances 
+  electronic scales (up to 100 kg)
+  hand held spring scales
+  square or rectangular metal cake pans
+  funicular pan - (looks like a dustpan with a hole in the handle for pouring) 
+  
+  moisture testers
+  
+  seed sizing sieves (round hole and slotted)
+  
+  small tractor with rototiller
+  
+  pollination supplies- pollination aprons, grease pencils/china markers, paring knives, shoot bags, tassel bags, 1/4 in. staples, staple pliers
+  
+  Genetics Lab equipment
+  -----------------------------------------------
+  Paully Wally Google All Day
+  -------------------------------------------------
+  Toy Commander Sega Dreamcast HD 
+      This is an imaginative game with a war theme. I love the imaginative way each room is imagined for each mission and the unlocking of rooms in the house as one progresses.
+  https://www.youtube.com/watch?v=tn7BSEuAvCQ
+  https://www.youtube.com/watch?v=EU-saNkAd84
+  
+  Endless Ocean
+      This is a good example of how the maize breeding facility serious game could work.
+      The player lives on a boat and receives emails for diving jobs such as taking pictures of specific things or showing another diver something.
+      The player can collect pictures of different things in the ocean and make photo albums.
+      The player can also just explore the ocean depths.
+  https://www.youtube.com/watch?v=ECpT_mRR0kg
+  https://www.youtube.com/watch?v=pPhEt7So9IA
+  
+  Genome Island - Second Life
+  https://www.youtube.com/watch?v=dHbz1TqkTG8
+  
+  Crazy Plant Shop (very close to the desired product but occurs in a flower shop with a magic crossing machine. It's very good.)
+  The player receives various orders for flowers and ornamental plants that may require an understanding of genetics to create.
+  https://www.youtube.com/watch?v=ALKtmTN1h6c
+  
+  Sim Tractor (https://www.simtractor.com/)
+  Sim Tractor 3.66 Trailer
+  https://www.youtube.com/watch?v=0P4mDRlQg7Q
+ 
+ Gene Rummy Card Game by Katrin Becker
+https://www.researchgate.net/project/Gene-Rummy-The-Card-Game-for-Learning-About-Genotypes-and-Phenotypes
+  http://minkhollow.ca/beckerblog/2017/05/14/gene-rummy-released/
+  https://www.slideshare.net/becker/using-cards-games-as-learning-objects
+ 
+Wageningen University and Research, Plant Breeding Game
+https://www.wur.nl/en/show/Software-Breeding-Game.htm
+
+Growing Food on Mars
+https://www.wur.nl/en/article/Wieger-Wamelink-in-VTR-NWS-about-growing-vegetables-on-Mars.htm
+
+Automated Mentors, Tutors and database of  relevant expert stories
+Mu Lambda 165
+  https://www.youtube.com/watch?v=6VEaU4G_e7k (very brief)
+  https://www.youtube.com/watch?v=6AKdfTMVJUw (longer set of clips)
+  
+New Dimensions in Testimony preserves Holocaust survivors' stories as holograms
+One could collect 'war' stories from plant breeders, technicians, employees etc.
+  https://www.youtube.com/watch?v=w83pe-0noUU
+  https://www.youtube.com/watch?v=afdQlCucdPI
+  https://www.youtube.com/watch?v=TXr5NMNQBu4
+  
+WATSON Intelligent Tutor
+  https://www.youtube.com/watch?v=v90C3HTwfBE
+  
+Socratic Arts Technology Solutions
+  https://www.socraticarts.com/solutions/technology-solutions/extra
+  https://www.socraticarts.com/solutions/technology-solutions/goal-based-scenario-tool
+  
+Big Industrial Simulators in Finland
+  https://www.youtube.com/watch?v=S0zMip62o5E
+  
+Labster (3d laboratory)
+   "A million dollar lab one click away."
+  https://www.youtube.com/watch?v=S58JLa82Hx8
+  https://www.youtube.com/watch?v=oairUMkieak
+  https://www.youtube.com/watch?v=9fRB9mF1yPc
+  
+Farm Simulator 2020
+Good example of modern 3d agriculture simulation.
+There are also online competitions
+The only problem with this is that there isn't an expansion module allowing one to create a plant breeding facility.
+  https://www.youtube.com/watch?v=tj50hPmT2Oo
+  
+Graphical Evolution of Farming Simulator (2008-2020)
+  https://www.youtube.com/watch?v=nyEe3h7W5dg
+  
+LaSalle Experiential Online MBA - Cash Crisis
+    This was created with the help of Dr. Roger Schank and is a very good example of what the final product could be like.
+    The student is introduced to a desired goal to be achieved and can access canned informational video and recorded advice from experts and practitioners.
+  https://www.youtube.com/watch?v=EQ3djK9No7Q
+  
+Modeling (Dr. David Hestenes)
+https://www.youtube.com/watch?v=lpChuPlNxXo
+https://www.youtube.com/watch?v=zMg0Ce8ddcI
+
+Science is the name, Modelling is the game. A conversation with David Hestenes
+https://www.youtube.com/watch?v=-hhzIagWJZE
+
+  BIG QUESTIONS INTERNET RESEARCH
+  How will Cloud Based Schools Change our Education?
+  https://www.youtube.com/watch?v=iM7v0zso7to
+  https://www.youtube.com/watch?v=JhWJJJ9Lzbg
+  
+  Supervised Courserooms and Profession-sponsored Volunteer Tutoring Centers
+  Delphian School - A Unique Approach to Learning
+  https://www.delphian.org/academics/our-approach
+  
+  Applied Scholastics International
+  http://www.appliedscholastics.org/
+  
+  Dave Eggers: My Wish - Once Upon a School
+  https://www.ted.com/talks/dave_eggers_my_wish_once_upon_a_school?language=en
+  
+  826 Valencia (https://826valencia.org/)
+  
+  Salvaging Civilization by H.G. Wells (1921)
+  Ch. 6: Schooling the World
+  Ch. 7: College, Newspaper and Book
+  http://gutenberg.net.au/ebooks13/1303651h.html
+  http://www.gutenberg.org/ebooks/33889
+ 
+ Mitchy's Maize http://www.pearltrees.com/paulchanceygowan/mitchy-s-maize/id18236243
+ 
+ 
+ Corn Breeding RPG
+  https://www.youtube.com/playlist?list=PL84b1TR9XxFm5pPfnW8Vt26n6h6RUqEeR
+  
+  Crop Research
+  https://www.youtube.com/watch?v=K0Vza3m3st8&list=PL84b1TR9XxFmI18iM7wtKhrGGgQ3Pfltq&index=7&t=0s
+ 
+  Grad student interview - Gäelle Hollandbeck
+  https://www.youtube.com/watch?v=z87eY35dBzA
+  
+  CIMMYT (The International Maize and Wheat Improvement Center)
+   - See Flickr photos, search CIMMYT Maize, CIMMYT genebank, CGIAR genebank etc.
+Albums - Simply maize, Maize landraces, Maize breeding, CIMMYT's Germplasm Bank and many more
+
+https://www.cimmyt.org/work/maize-research/  
+
+CIMMYT Genebank in Mexico
+https://www.flickr.com/photos/genebankplatform/43672686440/in/photolist-29xcW9q-2hvSyYG-Y4xw5b-y1fFZW-oBbGpS-oBch33-oBcd2Y-oK5LpE-yhSHJz-ygXWzs-y1nhpz-aQNf6T-oTpDMX-y1gCjf-pgZea-oK3kVR-yhw172-pgZiH-yev8jU-oRDFyb-pgZdt-rXhtiE-xjWjX8-bGNasF-bGN9Dx-bGN93X-bGN9R6-btTksb-oTq4WP-btTmxN-yfV7aS-yevjZN-xjNizW-btTk37-bGN9yH-bGNaeX-pgZkL-btTm8E-btTm3u-bGN9gT-btTkLC-btTkmh-btTk5J-pgZnx-oK3kNY-btTkHQ-pgZgx-bGNaaZ-btTmno-pgZjJ
+
+CIMMYT Photo Albums
+https://www.flickr.com/photos/cimmyt/5888011864/in/album-72157624216638947/ 
+https://www.flickr.com/photos/cimmyt/albums/72157624216638947
+https://www.flickr.com/photos/cimmyt/albums/72157624343052266
+https://www.flickr.com/photos/cimmyt/albums/72157624541318693
+https://www.flickr.com/photos/cimmyt/albums/72157625207543516
+https://www.flickr.com/photos/cimmyt/albums/72157625240229374
+https://www.flickr.com/photos/cimmyt/albums/72157625370844421
+https://www.flickr.com/photos/cimmyt/albums/72157625894332751
+https://www.flickr.com/photos/cimmyt/albums/72157633310691767
+
+-----------------------------------------------------------
+Gebisa Ejeta
+https://www.youtube.com/watch?v=WBSVLxI5STo (autobiographical)
+https://ag.purdue.edu/agry/directory/Pages/gejeta.aspx
+
+Gebisa Ejeta - Revitalizing Agricultural Research for Global Food Security (2010)
+https://www.youtube.com/watch?v=HeC3RFrPguM
+ ===================================================================================
+  
+ExTRA system for Glitch developer
+Mentoring at XTOL (https://youtu.be/HG-Rv6SXMDQ)
+ Somehow the A.I. system of the automated mentor needs to be indexed so that it knows I need the following quote:
+ 
+"Don't try to learn without	a
+purpose.	The	desire	to	learn	a	new
+skill	is	driven	by	curiosity.	Try	to
+build	something,	find	a	problem,
+and	learn	only	to	solve	it."
+- Dayle	Rees,	Prev.	Head	of Engineering	at	JustPark,	now	at Crowdcube"
+
+Questions: 
+What is my purpose?
+What do I want to do?
+How do I load a Phaser 3 scene from an external file in js/ on Glitch using Node.js, Express and ES5(?)?
+What are you trying to build?
+Can you load scenes defined as classes in the same file? Yes.
+You have skipped a gradient and can load scenes defined as classes {functions/(methods?)} 
+Are you using ES5, ES6 or ES7+?
+if ES5, are the scripts in the head of views/index.html?
+
+Is there a route for views/index.html? (I suspect that something like this might be the source of trouble)
+   in server.js:
+   
+   app.use(express.static("views"));// so here is the route to index.html
+   
+   app.get("/", (request, response) => {
+  response.sendFile(`${__dirname}/views/index.html`); // it's in server.js but js/Scene1.js is not (but is in head) 
+});
+   
+   app.post("/addDream", (request, response) => {
+   console.log(`add to dreams ${request.body}`);
+  
+   app.get("/clearDreams", (request, response) => {
+ 
+ app.get('/phaser.js', function(request, response) {
+  response.sendFile(__dirname + '/node_modules/phaser/dist/phaser.js');
+});
+
+
+
+routing - http://expressjs.com/en/starter/static-files.html
+        - http://expressjs.com/en/starter/basic-routing.html
+
+exporting - at bottom of file: export default TitleScene;// but  what version ES6 working? is this ES5, ES6 etc.?
+          - at top of file: export class SimpleScene extends Phaser.Scene {
+importing- import {Scene} from 'phaser'
+
+Done: Interactive text menu working
+      - getting a Menu button/interactive text to work
+assigning a keyboard key to a labeled container with a sprite in it
+syncing the sprite animation in the container with the movement of the container
+
+loading a csv tilemap
+loading a json map
+
+
+Source:
+p9.	Expert	Advice	for	New	Developers, Anatomy	of	a	Web	App, You Got This! zine
+
+https://cdn.glitch.com/6d561a98-036e-47a6-b152-a2a66a73d13e/YouGotThisZine.pdf?1519043698801
+=======================================================
+
+  
+  
+  
+  
+  
+  
