@@ -8,3 +8,18 @@ import FSMScene from './FsmScene.js';
 import GameOverScene from './GameOverScene.js';
 import CreditsScene from './CreditsScene.js';
 */
+export default class BootScene extends Phaser.Scene {
+
+	constructor() {
+		super('BootScene');
+	}
+
+	preload() {
+		this.load.image('splash', 'images/tut/splashscreen.png'); // revise image name and filename
+	}
+
+	create() {
+		this.scene.start("MenuScene");
+	}
+
+}
