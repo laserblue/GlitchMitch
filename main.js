@@ -14,7 +14,7 @@ var instructionScene = new InstructionScene();
 var gameScene = new GameScene();
 var endScene = new EndScene();
 */
-    var config = {
+    const config = {
         type: Phaser.AUTO,
         width: 800,
         height: 600,
@@ -30,7 +30,7 @@ var endScene = new EndScene();
         }
     };
 
-    var game = new Phaser.Game(config);
+    const game = new Phaser.Game(config);
 /*
 // load scenes
 game.scene.add('BootScene', bootScene);
