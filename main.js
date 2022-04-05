@@ -1,18 +1,22 @@
-/* change to scene class names
-import BootScene from './BootScene.js';
-import PreloadScene from './PreloadScene.js';
-import TitleScene from './TitleScene.js';
-import InstructionScene from './InstructionScene.js';
+/* change to scene class names BootScene, MenuScene, OptionsScene, SceneMain, GameScene, FSMScene, GameOverScene, CreditsScene
+import BootScene from './BootScene.js'; // check capitalization for all imported file names
+import MenuScene from './MenuScene.js';
+import OptionsScene from './OptionsScene.js';
+import SceneMain from './sceneMain.js';
 import GameScene from './GameScene.js';
-import EndScene from './EndScene.js';
+import FSMScene from './FsmScene.js';
+import GameOverScene from './GameOverScene.js';
+import CreditsScene from './CreditsScene.js';
 
-// Load our scenes
+// Load our scenes - !!! check all capitalization
 var bootScene = new BootScene();
-var preloadScene = new PreloadScene();
-var titleScene = new TitleScene();
-var instructionScene = new InstructionScene();
+var menuScene = new MenuScene();
+var optionsScene = new OptionsScene();
+var sceneMain = new SceneMain();
 var gameScene = new GameScene();
-var endScene = new EndScene();
+var fsmScene = new FSMScene();
+var gameoverScene = new GameOverScene();
+var creditsScene = new CreditsScene();
 */
     const config = {
         type: Phaser.AUTO,
@@ -24,7 +28,7 @@ var endScene = new EndScene();
                 gravity: { y: 200 }
             }
         },
-        scene: {
+        scene: {       //  array no longer required if use game.scene.add????
             preload: preload,
             create: create
         }
@@ -32,13 +36,15 @@ var endScene = new EndScene();
 
     const game = new Phaser.Game(config);
 /*
-// load scenes
+// load scenes - !!! check all capitalization
 game.scene.add('BootScene', bootScene);
-game.scene.add('PreloadScene', preloadScene);
-game.scene.add('TitleScene', titleScene);
-game.scene.add('InstructionScene', instructionScene);
+game.scene.add('MenuScene', menuScene);
+game.scene.add('OptionsScene', optionsScene);
+game.scene.add('SceneMain', sceneMain);
 game.scene.add("GameScene", gameScene);
-game.scene.add("EndScene", endScene);
+game.scene.add("FSMScene", fsmScene);
+game.scene.add("GameOverScene", gameoverScene);
+game.scene.add("CreditsScene", creditsScene);
 
 
 // start title
