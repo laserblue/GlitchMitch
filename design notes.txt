@@ -2,6 +2,9 @@ The main idea is to simulate a rural maize breeding research station using fanta
 This is to be a nonviolent game/simulation.No medieval sword play, no gory pools of blood, no stealing expensive cars, no exterminating populations or chucking the grand Llama over a waterfall. Also, NO swamp talk.
 
 I really like the peteroravec.com website and would like to make something similar that anyone interested in maize breeding can visit and explore.
+Another nice home page is https://arielroffe.quest/
+
+
 
 Goal #1: Get modular .js scenes in a scene folder running from ./js/scenes folder.
 NOTE: No ES6 transpiler like Babel installed so may need to add filenames and paths to html file head section to import external scene files (?)
