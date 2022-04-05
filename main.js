@@ -27,3 +27,4 @@
         this.add.image(400, 300, 'goddess');
 
     }
+// Tutorial: https://www.patchesoft.com/phaser-3-template
