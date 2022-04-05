@@ -2,15 +2,25 @@ The main idea is to simulate a rural maize breeding research station using fanta
 This is to be a nonviolent game/simulation.No medieval sword play, no gory pools of blood, no stealing expensive cars, no exterminating populations or chucking the grand Llama over a waterfall. Also, NO swamp talk.
 
 I really like the peteroravec.com website and would like to make something similar that anyone interested in maize breeding can visit and explore.
-Another nice home page is https://arielroffe.quest/
-
+Another nice home page is: https://arielroffe.quest/
+Explore Hong Kong University: https://my-day-in-hku.firebaseapp.com/
 
 
 Goal #1: Get modular .js scenes in a scene folder running from ./js/scenes folder.
 NOTE: No ES6 transpiler like Babel installed so may need to add filenames and paths to html file head section to import external scene files (?)
 Possibly: add Babel
 
+OFFLINE TOUCH ENABLED
 GOAL: ADD touchscreen player controls for Android touchscreen so I can work offline on Android phone.
+
+I don't own a laptop or desktop computer and the desktops and laptops I can access have prohibitive admin restrictions and can't be used offline. Github won't run node.js and codespaces requires a fee to run node.js. Glitch is really great but I'm running into major problems with the environment setup of the Phaser 3 template and getting bogged down. The example template code runs fine even with the Glitch Assets CDN URL but so far I can't get external scene class files to run. It looks like maybe I need to adjust the webpack config file, build file and maybe webpack dev server port as well to import external js files into the build. There are just so many places to get the syntax wrong or forget a comma or something that it's very frustrating.
+I have an ES5 version project running ok on Glitch as well but I had problems getting external .js files to run by putting them in an html  head or body script so I just created a dozen scene classes in the index.js file and added the scene class names on the top line for the linter. It works ok and now I am making tilemaps and looking at examples of code for entering buildings. I need to be a lot more object oriented and create a player class. I have a sprite running around and added a primitive if...then to make a scene change when the sprite is in the area of a stairwell but I need to pass player data to the next scene instead so that the player appears on the next scene tilemap in the proper place.
+I can't seem to find a free TILED online alternative. I have Tile2Map on an old android 4 phone and can't seem to transfer the json files via bluetooth or wifi so I'm using blury tilemap editor online but may need to manually create the proper format. I might be able to use the base64 data rather than the tile index values. At the moment I am trying to get multiple tilemaps almalgamated into one tileset and one tilemap. It gets even hairier when collision is added because there are several lines added for each collision tile. I'm toying with getting the blury tilemap editor running on node.js in termux or getting the linux version of TILED running in Termux or creating my own tile editor from scratch (MAYBE using some of the Phaser 2 code I used to use to make tilemaps from a tileset strip. I got Phaser Editor working on gitpod but it does not seem suited to tilemap cration. I worked with TILED years ago and what I want to do would be so easy and quick to do on somebody's desktop or laptop computer that would let me download Tiled.
+
+
+
+
+
 GOAL: Get photonstorm-phaser3-project-template going with ES6 and modular scene files. (Phaser 3.55.2, Webpack and Babel template) Get scenes from scene folder importing and working with ES6 source code
 GOAL: Add Level 1 Fantasy scenes (King's Banquet, World overview, village, Corn and Apple festival, village little people wrestling, Castle interior and story tapestries, secret garden)
 GOAL: Load CSV tile map of building exterior and tile map of building interior with correct tiles (so can see and enter building and explore unlocked areas of building interior first and second floors)
