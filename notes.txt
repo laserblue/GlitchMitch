@@ -1,0 +1,7 @@
+The main branch is going to use a Phaser 3.55.2 CDN. 
+Previous versions on Glitch were designed around using Node.js
+The Glitch branch contains the old code without external scene files.
+Glitch uses a Linter that required all scene files to be listed as globals on a commented line at the top.
+I have a second project on Glitch that I finally got external scene files to work on.
+The problem with the old code had something to do with the tween code that I had to fiddle with to get external scene files to work the first time, so the second time I just commented out the tween code and things started working.
+Iḿ not sure what headaches Iḿ going to get into trying to get a version working on Github i/o with a Phaser CDN.
