@@ -1,65 +1,80 @@
-# Mitchy-maize
+# UNDER CONSTRUCTION
+# Coming to a Glitch Project Soon
 
-A Phaser 3, 2d, 3/4 perspective, RPG fantasy for illustrative and training purposes.
+I am currently bogged down in the development environment configuration and need to learn how to set up Express.js, Webpack and work with Glitch environment variables. 
+I am going to try to get the  Phaser 3.55.2 template working  with Babel and Webpack (without Typescript) so this project might be down for a while
 
-This is to be a simulation of a working maize breeding facility with Shrek™ and Donkey™ dream-like Walter Mitty type fantasy adventures for imaginative explorers.
-In my dreams it would also be connected to a LABSTER™ virtual lab (secret location in the game).
-There will also be a connection in the Conference room to an automated mentor and Skyped/video chat live Mentors.
+1. I need to learn how to use the Rewind tool
+2. I need to learn how to use the .env folder
 
-`design notes.txt` contains notes related to the project goals, related projects for learning and testing use of Glitch, Phaser 3, ES6, Node.js, Express etc. and notes on the envisioned App and simulation levels. 
+Since webpack v5.0.0-beta.1 the minimum Node.js version to run webpack is 10.13.0 (LTS)
 
-# Mentored Experiential Learning
->"We need to stop building courses and provide an over the shoulder autonomous entity that knows what you are working on and can offer help. That help would range from just-in-time advice, to just-in-time practice in a new environment, to more prolonged course-like material when there is something complex to learn how to do. This is what important AI would look like. We should not have courses that provide information. We should have courses that provide experiences. And we need to provide mentors and peers with whom to have conversations. Those mentors should be people until we can build good AI mentors." \-Roger Schank
-[Education Outrage, Wednesday, March 30, 2016, Pragmatic Learning: It's not "fun"](https://educationoutrage.blogspot.ca/2016/03/pragmatic-learning-its-not-fun.html)
+Get node version at terminal prompt: $ node -v
+Currently using: Node.js v10.15.3
 
-[Homepage of Dr. Roger Schank, PhD](https://www.rogerschank.com)
-
-[Flight of the Navigator movie clip](https://youtu.be/kzWhPanS8mU)
-
-
-Socratic Arts Goal-Based Scenario Authoring Tool
-
-[Socratic Arts Goal-Based Scenario Authoring Tool](https://www.socraticarts.com/solutions/technology-solutions/goal-based-scenario-tool)
-
->"Teachers need to be trained to be more like counselors, offering help and guidance, and more like seminar facilitators, helping people express themselves and confront others with their ideas. As they cease to be information providers they should become what many of them wanted to be in the first place: trained mentors. They must learn to help in areas that are inherently human where children and adolescents really need help. How to get along with each other; how to communicate better; how to deal effectively with stress; how to function in a complex society."
- Educational Technology: The Promise and The Myth by Roger C. Schank,
- Schank Learning Consultants, Inc. School of Computer Science,  
-Carnegie Mellon University 
-June 25, 2001 
-
-Learning Web App Development (2014 ) by Semmy Purewal
-
-pg. xi
-
->“It turns out that there’s a pretty large gap between practical, everyday software engineering and programming as taught by computer science departments at colleges and universities.”
-
->“In early 2008, after about six years of grad school and teaching part-time, …”
-
->“... I had been studying computer science for about nine years at that point, and had been teaching students how to develop software for about six years. Shouldn’t I have already known how to build web applications? It turns out …"
+Added script to package.json: "start": "webpack-dev-server --inline --hot --host 0.0.0.0 --public $PROJECT_DOMAIN.glitch.me --config webpack/base.js --open"
+This might not be the best way but it works.
+This coder would like to work with Express and relative paths (trapezoidal-tarsal project)
+The Glitch assets folder is not being used and it might be better if it was used rather than relative paths 
+This neophyte coder does not know how to upload images to src/assets/ 
+Initial attempt to get SceneMain running from ./scenes/sceneMain.js did not work.
 
 
-# formerly hello-sqlite
+# Phaser 3 Webpack Project Template
 
-A starter that has a database
+A Phaser 3 project template with ES6 support via [Babel 7](https://babeljs.io/) and [Webpack 4](https://webpack.js.org/)
+that includes hot-reloading for development and production-ready builds.
 
-- This app uses sqlite but you can power your apps with [a number of other storage options](https://glitch.com/storage)
-- `sqlite.db` is created and put into the `.data` folder, a hidden directory whose contents aren’t copied when a project is remixed. You can see the contents of `.data` in the console under "Logs"
-- To save to the database, remix this app!
+Loading images via JavaScript module `import` is also supported.
 
-On the front-end,
+## Glitch variation
+These instructions need to be modified for Glitch cloning and use on Glitch. 
 
-- Edit `views/index.html`,  `public/style.css`, and `public/client.js`
-- Drag in `assets`, like images or music, to add them to your project
+## Requirements
 
-On the back-end,
+[Node.js](https://nodejs.org) is required to install dependencies and run scripts via `npm`.
 
-- Your app starts at `server.js`
-- Add frameworks and packages in `package.json`
-- Safely store app secrets in `.env` (nobody can see this but you and people you invite)
+## Available Commands
 
-Click `Show` in the header to see your app live. Updates to your code will instantly deploy.
+| Command | Description |
+|---------|-------------|
+| `npm install` | Install project dependencies |
+| `npm start` | Build project and open web server running project |
+| `npm run build` | Builds code bundle with production settings (minification, uglification, etc..) |
+
+## Writing Code
+
+After cloning the repo, run `npm install` from your project directory. Then, you can start the local development
+server by running `npm start`.
 
 
-## Made by [Glitch](https://glitch.com/)
+After starting the development server with `npm start`, you can edit any files in the `src` folder
+and webpack will automatically recompile and reload your server (available at `http://localhost:8080`
+by default).
 
-\ ゜ o ゜)ノ
+## Customizing Template
+
+### Babel
+You can write modern ES6+ JavaScript and Babel will transpile it to a version of JavaScript that you
+want your project to support. The targeted browsers are set in the `.babelrc` file and the default currently
+targets all browsers with total usage over "0.25%" but excludes IE11 and Opera Mini.
+
+  ```
+  "browsers": [
+    ">0.25%",
+    "not ie 11",
+    "not op_mini all"
+  ]
+  ```
+
+### Webpack
+If you want to customize your build, such as adding a new webpack loader or plugin (i.e. for loading CSS or fonts), you can
+modify the `webpack/base.js` file for cross-project changes, or you can modify and/or create
+new configuration files and target them in specific npm tasks inside of `package.json'.
+
+## Deploying Code
+After you run the `npm run build` command, your code will be built into a single bundle located at 
+`dist/bundle.min.js` along with any other assets you project depended. 
+
+If you put the contents of the `dist` folder in a publicly-accessible location (say something like `http://mycoolserver.com`), 
+you should be able to open `http://mycoolserver.com/index.html` and play your game.

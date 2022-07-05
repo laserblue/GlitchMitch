@@ -1,110 +1,52 @@
-The main idea is to simulate a rural maize breeding research station using fantasy adventures to unlock rooms, equipment, capabilities etc.
-This is to be a nonviolent game/simulation.No medieval sword play, no gory pools of blood, no stealing expensive cars, no exterminating populations or chucking the grand Llama over a waterfall. Also, NO swamp talk.
+The main idea is to simulate a rural maize breeding research station using tasks from a yearly work cycle to trigger fantasy adventures that unlock rooms, equipment, capabilities etc.
+This is to be a nonviolent game/simulation - No medieval sword play, no gory pools of blood, no stealing expensive cars, no exterminating populations or chucking the grand Llama over a waterfall. Also, NO swamp talk.
+Completion of a level unlocks rooms, equipment, a Socratic Arts-type Extra (Experts Telling Relevant Advice) system of well-indexed short video clips, connections to an automated as well as live and e-mail Mentor(s) and videos related to the level completed. 
+The videos related to the level will be on things like related careers, general interest videos on a topic encountered in the level such as being short statured and the genetics of dwarfism etc., informational and instructional videos (NOTE: Instructional videos and Khan Academy type mastery programmed exercise paths will be used only as backup to the Mentored Experiential goal-based scenario tasks in the game and the Socratic Arts ExTRA system.)
 
-I really like the peteroravec.com website and would like to make something similar that anyone interested in maize breeding can visit and explore.
-Another nice home page is: https://arielroffe.quest/
-Explore Hong Kong University: https://my-day-in-hku.firebaseapp.com/
+I really like the way video is used in the VISTA (Virtual Internationl Science and Technology Academy) Year in Health Sciences, Designer Genes rotation and the Plant Plague rotation.
+http://vista.engines4ed.org/home/index.htm
+https://www.engines4ed.org/
+https://www.engines4ed.org/products.cfm?product=Career-Choices
+https://www.socraticarts.com/Professional-Prep-Academy
 
+I would like to see something similar built for all work roles at a rural maize breeding facility.
 
-Goal #1: Get modular .js scenes in a scene folder running from ./js/scenes folder.
-NOTE: No ES6 transpiler like Babel installed so may need to add filenames and paths to html file head section to import external scene files (?)
-Possibly: add Babel
+Virtual Maize Breeding Facility related YouTube Videos - A playlist trying to get across the main idea of the simulation
+https://www.youtube.com/playlist?list=PLAmgJxv9wYbaHv3TNIe3jE44t6VFEewz0
+WARNING: This playlist includes a video clip of Al Bundy singing a Bundy version of old McDonald NOT SUITABLE FOR CHILDREN. I added it for references to using shoebox lid corners to count seeds and Shoepeg corn.
 
-OFFLINE TOUCH ENABLED
-GOAL: ADD touchscreen player controls for Android touchscreen so I can work offline on Android phone.
+Level 1: https://www.youtube.com/playlist?list=PLAmgJxv9wYbbHrPpT1zbc8uy4BHl2q9_X
+Level 2: https://www.youtube.com/playlist?list=PLAmgJxv9wYbbF5N3kjohdGgOSuIUwBWOh
+Level 10: https://www.youtube.com/playlist?list=PLAmgJxv9wYbbbcem1R72ieWA62wq1S-Uj
+Conference room: https://www.youtube.com/playlist?list=PLAmgJxv9wYbZDNDCWTDdcWE7SAgRdCmUu
 
-I don't own a laptop or desktop computer and the desktops and laptops I can access have prohibitive admin restrictions and can't be used offline. Github won't run node.js and codespaces requires a fee to run node.js. Glitch is really great but I'm running into major problems with the environment setup of the Phaser 3 template and getting bogged down. The example template code runs fine even with the Glitch Assets CDN URL but so far I can't get external scene class files to run. It looks like maybe I need to adjust the webpack config file, build file and maybe webpack dev server port as well to import external js files into the build. There are just so many places to get the syntax wrong or forget a comma or something that it's very frustrating.
-I have an ES5 version project running ok on Glitch as well but I had problems getting external .js files to run by putting them in an html  head or body script so I just created a dozen scene classes in the index.js file and added the scene class names on the top line for the linter. It works ok and now I am making tilemaps and looking at examples of code for entering buildings. I need to be a lot more object oriented and create a player class. I have a sprite running around and added a primitive if...then to make a scene change when the sprite is in the area of a stairwell but I need to pass player data to the next scene instead so that the player appears on the next scene tilemap in the proper place.
-I can't seem to find a free TILED online alternative. I have Tile2Map on an old android 4 phone and can't seem to transfer the json files via bluetooth or wifi so I'm using blury tilemap editor online but may need to manually create the proper format. I might be able to use the base64 data rather than the tile index values. At the moment I am trying to get multiple tilemaps almalgamated into one tileset and one tilemap. It gets even hairier when collision is added because there are several lines added for each collision tile. I'm toying with getting the blury tilemap editor running on node.js in termux or getting the linux version of TILED running in Termux or creating my own tile editor from scratch (MAYBE using some of the Phaser 2 code I used to use to make tilemaps from a tileset strip. I got Phaser Editor working on gitpod but it does not seem suited to tilemap cration. I worked with TILED years ago and what I want to do would be so easy and quick to do on somebody's desktop or laptop computer that would let me download Tiled.
+http://www.pearltrees.com/paulchanceygowan/mitchy-s-maize/id18236243
 
+Almost a Hat writeup (for the 1950's - 1970's?) but not authoritative: https://how-to.fandom.com/wiki/Guide_Plant_Breeding_Technician_IT
 
+I really like the peteroravec.com website and would like to make something similar but of a rural maize breeding facility that anyone interested in maize breeding can visit and explore.
+Some other examples of Phaser 3 RPG websites are https://my-day-in-hku.firebaseapp.com/ which models a University Campus and Ariel Roffé's Quest (his personal website) at https://arielroffe.quest/
+OpenGameArt Loving Pixel Cup Interactive Demo: https://lpc.opengameart.org/static/LPC-Style-Guide/build/demo.html
 
+Sky Office: https://sky-office.co/
+NOTE: I like Gather https://www.gather.town/ but I am very opposed to virtual 'desks in rows' school rooms. David Thornburg mentions virtual 'desks in rows' classrooms in Second Life in a presentation he gave.
+I want a virtual rural maize breeding research station in either 2D, 3D, or augmented reality. 
 
+Years ago when I was working on this with Sphere RPG, I saw a Metrowerks introductory genetics scenario that was ok, but it's no longer available. 
+Crazy Plant Shop was even better but took place in a floral sales shop.
+I'm thinking that it might be better to eventually scrap the fantasy adventures in favour of a straight out work scenarios like in LaSalle University, Barcelona, Spain's 'Cash Crisis' or like in the game 'Endless Ocean'.
+I was going to have work scenarios in the middle levels with the penultimate level 10 putting the player in charge of a Plant Breeding Program and then on graduation merging with a live SkyOffice or GatherTown.
 
-GOAL: Get photonstorm-phaser3-project-template going with ES6 and modular scene files. (Phaser 3.55.2, Webpack and Babel template) Get scenes from scene folder importing and working with ES6 source code
-GOAL: Add Level 1 Fantasy scenes (King's Banquet, World overview, village, Corn and Apple festival, village little people wrestling, Castle interior and story tapestries, secret garden)
-GOAL: Load CSV tile map of building exterior and tile map of building interior with correct tiles (so can see and enter building and explore unlocked areas of building interior first and second floors)
-GOAL: add a blank layer and put stake tiles at sides of field for aisles between ranges marking
-GOAL: Add code to kill game when user chooses EXIT or Credits scrolling finished once or twice.
-GOAL: Create Assets for Level 1 Workroom scene (Building interior, balding NPC, NPC dialogue, NPC stamping animations,Coin Envelope number stamping station, blank coin envelopes, self-advancing number stamper with 6 numbers, numbered coin envelopes, ink bottle, numbering machine ink pads, stylus for changing starting numbers, player stamping animation, dream screen ripples and sound)
-Goal: Create all assets for Level 1 Dream Sequence (King's Quest)
-Goal: Create intro cutscene with player walking along rural gravel road in very early morning
+For now, this is just my personal hobby project and I want to complete at least level 1.
+Plant breeding has changed a lot in the last two decades and I leave it to someone else to crete a modern plant breeding facility simulation.
+Maybe someone at Kidzania could create something with realistic 3d lab and field equipment. https://kidzania.com/en
 
+Code combat is along the lines of what I'm looking for. Genome Island was as well, but it did not simulate a plant breeding facility and its yearly operational cycle.
+Kidzania is coming out with the kind of thing I want to see and its close to what Dr. Roger Schank is calling for but a bit too much on the entertainment side (but that can be a good thing). 
+For the teenagers, however, there should be mentors and coaches and serious scenarios and drills on industrial equipment simulators like the Iowa tractor safety research tractor simulator (Android tractor simulator apps and Farming Simulator 2022 can be used by younger players) where mistakes can be made without harm to anyone or any property. 
+In fact the scenario designers may want to design things to make it difficult not to make a mistake.
 
-(NOTE: may need to put a comment with globals filename, filename etc. for Glitch linter to import files. See calm-potassium. Express routes correct?? put scripts in body?? calm-potassium works fine with scripts in head (MIND THE ORDER OF FILES), need to use app.get, import ???)
-
-Goal: running:  splash screen, menu screen with menu items(Start/Play game, Options, Credits),
-
-In progress: options screen with menu items(toggle Sound, toggle Music),
-
-Done: a background image game scene stand-in, a background image 'game over' scene and a background image scrolling credits scene 
-DONE: In Progress: get scrolling text working in Credits scene (may require loading bitmap text )
-
-Goal: load Options Scene (Vavilov office pic) from js/SceneMain.js
-
-DONE: Goal: create working menu interactive text to change scenes
-
-Goal: move container bodies with keyboard keys, then with touchCursor or Swipe Plugins (hopefully it works with Phaser 3)
-Goal: figure out how to move a container (body?) with keyboard keys
-Goal: Add Touch cursor plug-in or Swipe plugin for mobile development work and preview
-Goal: sync sprite animations with movement of container
-Goal: use texture render to add labels/names to sprites
-
-Done: Goal: load a csv tile map // not correct tileset loaded or wrong height, width ??
-
-Goal: load an outdoors/field/building exterior scene
-In progress: added csv file but used wrong tileset so map had wrong tiles
-
-Goal: create an exterior building scene
-Goal: create an interior building scene with blacked out locked areas - 2 floors
-
-Goal: seamlessly transition from exterior building scene to interior building scene when door threshold crossed by sprite
-
-Goal: allow exploration of upper floor and workroom on first floor
-Goal: create csv map
-      upper floor: open areas - conference room, men's washroom, women's washroom, kitchen
-      upper floor: locked areas/room - Plant Breeder's Office at the west end of the E-W hall, LTSP Server room, Research Station Manager's Office, Secretary/Administrative Assistant Office, Small meeting rooms/offices, shower
-      upper floor: unlocked areas/rooms - conference room/supervised course room - conference room table, chairs, front wall presentation/projection area (BIG screen tv), personal holographic projection/virtual reality projection devices, automated mentor kiosk/live video mentor connection
-                                        - kitchen - large rectangular table surrounded by chairs, a Gene Rummy pack on the table, refrigerator containing a bottle of water and a sandwich, stove/oven, sink, counter, cupboards 
-
-Goal: create elderly male pattern balding NPC for initial encounter
-Goal: create props for stamping numbers on coin envelopes by elderly NPC and by player
-Goal: create dialog flow between player and elderly NPC
-Goal: Create first fantasy adventure and task: King's Quest (medieval)
-
-Goal: On completion of first Level 1 quest, reward player with Jab planters(4), White pickup truck, unlocked seed storage area and automated mentor answers to questions on a career in plant breeding
-
-DONE - Goal: get background image scenes running
-DONE - Goal: Get load progress screen running - simple code
-
-DONE - Goal: load finite state machine starter code as a game scene with text labeled containers with sprite animations
-             - based on slight modifications to Mark Kelly's phaser-fsm-example project on Glitch (https://www.mkelly.me/blog/phaser-finite-state-machine/)
-=====================================================================================================================================
-
-photonstorm-phaser3-project-template - Phaser 3.55.2, Webpack, ES6 (so I can use modern Javascript and modular files)
-Phaser 3 - the-great-conversation-bots (remix of finite state machine(fsm) starter with sprite name text in containers with animated sprite)
-Phaser 3 - calm-potassium - remix of phaser-many-scenes1 with all js files in js folder
-
-Phaser 3.16.2 - lilac-duckling (original finite state machine starter - no alterations yet) 
-Phaser 3.16.2 - chalk-wedelia (original finite state machine starter - no alterations)
-
-Phaser 3.21.0 (phaser.js) - calm-potassium example for loading external scene files (works if .js files put in js folder and path for scripts in index.html changed to correspond. loader is using github assets folder)
-Phaser 3.16.2 (Node pkg) - hexagonal-professor "A sample app illustrating how to use phaser-tiled-json-external-loader to load Tiled tilemaps with external tilesets."
-
-Phaser 3.19.0 - pie-ferret (example Phaser code with background image and particle emitter)
-Phaser 2.6.2 - marbled-santanaraptor (Glitch Game Club Phaser examples)
-Phaser 2.6.2 (CDN)- spotted-polka (original platformer game assets, (note in head of index.html: <script>src="js/game.js"</script>))
-Phaser 2.6.2 (CDN) - alpine midnight (same as spotted polka but with additional code that makes sprite change size when colliding with another sprite)
-Phaser 2.4 - laserblue-mitchymaize(private, GitHub clone and GitHub fork of Matt MacFarland's Game States Tutorial - the DRY Mixins code was a bit too advanced for me at the time)
-
-SQLite3 - slime-aspen (code exploration of SQLite3 using lists of Great Ideas, authors, web links)
-
-Glitch.com  - https://www.nexmo.com/blog/2019/07/05/javascript-hotline-with-opentok-and-nodejs-dr (for live Mentor linkage)
-Node.js - https://cdn.glitch.com/6d561a98-036e-47a6-b152-a2a66a73d13e/YouGotThisZine.pdf?1519043698801
-
-glitch.com/~intro-to-node
-glitch.com/website-starter-kit
-glitch.com/~async-await-playground
+Ideally, a Socratic Arts ExTRA system would be available for players to consult. Automated and live Mentors would be accessible in the Conference room.
 ===================================================================================================================================== 
 
 Opening Scene - player is imagined as being on a doctor prescribed early morning walk on the East-West gravel road moving east
@@ -112,7 +54,7 @@ Opening Scene - player is imagined as being on a doctor prescribed early morning
               - the motivation(?) for the opening scene's curiosity-driven exploration of the building is a bit awkward (most people don't just enter a building without knocking - maybe player is seeking washroom and knocks but gets no answer ?????)
               - gravel road, laneway, bare soil/worked 40 acre field with gravel roads on east and north sides,front lawn of research station and building exterior
               - building has door on north side, near west end (75%-80% of length). threshold crossing triggers loading of building interior tilemap 
-              - player can explore workroom on first floor, climb stairs to second floor and explore E-W hallway, N-S hallway, Conference room, men's and women's washrooms and kitchen. 
+              - player can explore workroom on first floor, climb stairs to second floor and explore E-W hallway, N-S hallway, Conference room, men's and women's washrooms and kitchen/lunch or break room. 
                 Workroom and washroom on first floor are unlocked
                 Conference room/Supervised Courseroom on second floor in E-W hallway is unlocked. 
                 Conference room contains a Mu-Lambda-165-type automated A.I. mentor multi-media kiosk with "video player" 
@@ -205,7 +147,7 @@ Opening Scene - player is imagined as being on a doctor prescribed early morning
   
   Abandoned idea: player encounters group of people on road and asked how many going to Londontown (player's destination). If player answers riddle incorrectly, player is pulled off horse by crowd and game ends.
   
-  Player moves on worldview map to a small town. 
+  Player moves on worldview map to a small town.// the worldview will be a mnemonic landscape of a chromosome linkage map
   There is a crowd in the town square. 
   The Player is greeted by an Augustinian Friar who explains that the festivities are for a corn and apple festival and invites the player to enjoy the entertainment and roasted sweet maize.
   The player is invited to wager on a 'little people' wrestling tournament (I welcome any suggestions for a nonviolent alternative that does not involve gambling or 'little people' (You Can't Ask That - Short Statured https://www.youtube.com/watch?v=qHgDG5Ouo6s)
@@ -228,7 +170,7 @@ Opening Scene - player is imagined as being on a doctor prescribed early morning
   https://en.m.wikipedia.org/wiki/Eye_color
   
   Scene 3:  player sets off down the road again.
-  player encounters elderly man with cane on road who requests a ride to Londontown.('old folks' posture - https://www.thestar.com/life/health_wellness/2014/06/16/how_to_get_rid_of_old_folks_posture.html)
+  player encounters elderly man with cane on road who requests a ride to Londontown.('old folks' posture - https://www.thestar.com/life/health_wellness/2014/06/16/how_to_get_rid_of_old_folks_posture.html) - cane use should look similar to person using jab planter
   Player should agree to give elderly man a ride. Cutscene shows stopping, getting off horse and helping elderly man onto horse.
   If player refuses to give elderly man a ride to Londontown, the quest can't be completed at all.(Player will not be told this)
   At town limits, elderly man thanks player for ride and gives player 2 seeds or two packets of seeds.
@@ -237,7 +179,7 @@ Opening Scene - player is imagined as being on a doctor prescribed early morning
   Scene 4: Player enters castle.
   Tapestries in the main hall tell a sleeping beauty story and how to obtain a sweet pea plant with white flowers to awaken her.(possibly some punnet squares on the tapestries???)
   Spending longer than a few minutes in the main hall can get the player pulled by the ear into a porcelain dish washing room for a certain amount of penalty time. (probably historically inaccurate)
-  Player enters a corner tower with a winding staircase and finds sleeping beauty who he has been tasked to return to the King. (steeds but no ogres or red dragons in this plot)
+  Player enters a corner tower with a winding staircase and finds sleeping beauty who he has been tasked to return to the King. (noble steeds but no ogres or red dragons in this plot)
   There is an empty flower vase beside a mirror. Placing a white sweet pea flower into this vase awakens sleeping beauty. 
   The tapestries show how to enter a secret garden from the tower room by descending another winding staircase. 
   The player must plant the two seeds or two packets of seeds in individual beds in the secret garden and return after a specific amount of time. 
@@ -261,12 +203,12 @@ Opening Scene - player is imagined as being on a doctor prescribed early morning
   https://www.thoughtco.com/monohybrid-cross-a-genetics-definition-373473
   
   I want to stay very far away from historically-based lectures and exams that require a student to memorize names and dates etc.(e.g. Neela Bakore Tutorials, Genetics - Mendel & his contribution (https://www.youtube.com/watch?v=2ycwGQUjmJY see whiteboard at around 3:13/20:07) 
-  This lecture also contains a few minor factual errors that may have been just slips of memory and tongue. E.g. life cycle length of pea plants versus life cycle length of drosophila 
+  This lecture also contains a few minor factual errors that may have been just slips of memory and tongue. E.g. life cycle length of pea plants versus life cycle length of drosophila. The quoted life cycle length for peas sounds much too short and more like that for flies. I know that field peas have a life cycle that is several months longer. Maybe sweet peas have an extremely short life cycle. I don't know. 
  
   The stress will be on application and the most up-to-date understandings.
   Later, I want to force the player into making an incorrect prediction due to ignorance of incomplete dominance.
   
-  The tapestries explain that a second planting of seeds is required to obtain a white sweet pea flower. (this still true with incomplete dominance but the appearance of a third color might create confusion later)
+  The tapestries in the Castle Hall explain that a second planting of seeds is required to obtain a white sweet pea flower. (this still true with incomplete dominance but the appearance of a third color might create confusion later)
   The player returns to the garden to find a small number of white sweet pea flowers among purple flowers (maybe in the plot for one of the first seeds)
   The player cuts the stem of a sweet pea plant with white flowers with a sword and places the plant with white flowers in the vase beside the mirror.
   Sleeping beauty awakens and level one ends.
@@ -275,25 +217,25 @@ Opening Scene - player is imagined as being on a doctor prescribed early morning
   If desired, there are also BIG QUESTIONS that can be worked on with team members MMO style in the conference room.
       
   Level 2
-  Casino Royale (Spy Fantasy - Working with Statistics and 'Probability as the Logic of Science'): 
+  Casino Royale (Spy Fantasy - Working with Statistics and 'Probability Theory as the Logic of Science'): 
   Player can also consult the automated A.I. in the conference room and view short question answering videos on a career in plant breeding, plant breeding in general and maize genetics 
   
   Limited Duration Task:
   Prepare seed to be planted in the Maize Inbreeding Nursery in the Spring
   Refer to a prepared Planting Seed List of Inbred Nursery seed from the previous year (for planting in the new year) and fill numbered envelopes with the correct number of kernels from the correct inventory envelope.
-  Use shoebox corners and long sharpened pencils to count seed and fill envelopes.
+  Use shoebox corners and long sharpened pencils to count seeds and fill envelopes.
   Place filled envelopes in numerical order in small white "vault boxes" with envelopes propped up by small glass juice bottles
   
-  Dream Sequence trigger: This envelope is full of yellow glass not maize (?????) "Une autre carte, monsieur?"
+  Dream Sequence trigger: This envelope is full of yellow glass not maize (?????) "Une autre carte, monsieur?" - the coin envelopes look like playing cards
   
   Level 2-2 
   
   Measure out and mark Inbreeding Nursery Ranges (range marking cutscene and possibly "try to drive a straight line" wobbly steering tractor mini-game)
   plant Inbreeding Nursery with jab planter according to Planting Plan diagram. (upgrade to 4-row maize plot planter with cones) 
-  plant offsite Adapting Maize Populations
+  plant offsite isolated Adapting Maize Populations
   plant Sibbing Nursery
   plant Hand Crossing Block
-  plant offsite crossing blocks 
+  plant isolated offsite crossing blocks 
   
   prepare seed for planting of Yield Trials (upgrade to automated envelope filler)
   plant Yield Trials with plot planter (upgrade to vacuum planter)
@@ -317,6 +259,9 @@ Opening Scene - player is imagined as being on a doctor prescribed early morning
  --------------------------------------------------------------
  Level 10: The Dirty Dozen: "Very pretty kernel, very pretty!"
            (Germplasm Enhancement Maize and Glass Gem Maize)
+           Player inspects Maize Yield Trial "troops"
+           Player designs a double cross
+           Player releases Breeder's seed and Foundation seed
   --------------------------------------------------------------------------------
   Greenhouse
 ---------------------------------------------------------------------------------
@@ -328,28 +273,129 @@ Opening Scene - player is imagined as being on a doctor prescribed early morning
   growth chamber with multicolored lighting
   electrophoresis
   
-  Genetics Lab
+  Genetics Lab (2d or 3d - Labster 3d Lab would be Dream Lab if licensing arrangements could be made to use it)
   Genetics Lab work (Secret Lab)
   
   mRNA
   tRNA
   PCR
   genomic sequencing
+==============================================================================================================================  
+  I want the work tasks of a complete yearly cycle to be the actions that trigger the fantasies for each of the ten levels. 
+The player will only have to do the task for a short time before the fantasy is triggered.
+
+E.g. The first task will be to stamp row numbers onto coin envelopes for planting the maize inbreeding nursery. 
+In higher levels, this task will be automated and "level up" updated to modern methods of labeling and envelope filling.
+
+Completing Level 1 unlocks the seed storage room and the next triggering task is to fill numbered coin envelopes with a specific number of seeds according to a prepared Inbreeding Nursery Planting seed List shown either on simulated paper or on a computer monitor on the work shelf.
+The task of counting out seeds will be done using 2 shoebox lid corners and a long sharpened pencil/stylus. 
+In higher levels, there will be upgrades to counting scales and then modern seed counters and packagers. 
+The filled coin enelopes are placed sequentially in small white "vault box" trays (10 white "vault box" trays per large cardboard "beer" tray).Small juice bottles are used to prop up the envelopes in the narrow white trays until the tray is filled.
+
+Placement of seed coating (insecticide/fungicide etc) 
+
+Filling Organizer Planting Trays with Seed: 
+Empty large brown cardboard trays with 10 white inserts each (ORGANIZERS) are laid out on a table with a Field Planting Plan Diagram on one sheet of paper on top of the empty trays 
+A physical barrier is placed on one end of the table to prevent circling the table rather than adhering to a serpentine design. When filling the plastic bubble trays, it can be hard to know where one left off if one goes for lunch after filling an entire range.
+Instead of starting the next range on the other side of the table in a serpentine fashion, one can mistakenly start the next range from the closest side above plot #1. There are no numbers on the filled cells, unlike on envelopes, so for a 60-row or 60-plot field, one will place seed for row 61 where seed for row 121 is supposed to be and the numbering of the row/plots for the entire range will be going the wrong way. 
+Each white insert tray represents a column/field row and if there are more columns/field rows than will fit across the table, the large brown cardboard trays are continued on the other side of the table as if one had bent the horizontal rows of brown cardboard around the table.
+For the planting of trays of envelopes on the planter, the numbered envelopes are placed in the white insert trays in numerical order going across the table, either left or right according to the planting plan.
+For the planting of the numbered, four-row, 18-range plastic indexer trays, the numbered envelopes are poured in sequential order into the empty bubble cells across the table according to the planting plan on the printed page.
+
+Slide metal lids on numbered/marked plastic indexer trays being careful not to push seed from an overfilled cell into the next cell above it.
+When using envelopes inside the Field Organizer Trays, label each large brown cardboard tray with a number on a large sticky note in the proper order according to the planting plan and place on pickup truck with lowest numbered trays closest to rear of truck or on top of stack. Envelope row numbers can still be used to pull 8 trays for each round and place 4 white insert trays in proper order in the trays on the planter (the other four trays were placed in the starter fertilizer bin on the planter and placed at the other end of the field.
+
+Measuring and marking the ranges of the field layout with wooden stakes and wire flags - this can be done prior to or concurrent with filling the field organizer planting trays.
+Marking the pathways - this is done in the field by the Tractor operator concurrent with filling the Field Organizer Planting Trays
+
+Design of Yield Trials
+Filling of coin envelopes with Yield Trial entry seeds according to Yield Trial Seed Planting List
+Placement of seed in trays (either cardboard or 4-row plastic indexer trays) according to Planting Plan (upgrade to vacuum planter)
+
+planting coin envelopes of seed with a jab planter (Inbreeding Nursery/Sibbing Nursery/hand pollinated crossing block/isolated crossing block(s))
+planting coin envelopes of seed with a 4-row cone-type plot planter
+planting plastic bubble indexer trays of seed (Inbreeding Nursery/Sibbing Nursery/Crossing Blocks) with a 4-row cone-type plot planter
+planting maize plot Yield Trial experiments, maize Yield Trial strips
+
+placement of numbered wooden row stakes (both sides and every 5 rows in Inbreeding Nursery or plots for Yield Trials)
+placement of tassel bag FLAGS to mark division of Sibbing Nursery Family blocks
+
+doing plant emergence counts on Yield Trial plots
+counting and thinning Yield Trial plots with long handled, triangular hoes, even up plot ends with lower case 'm' shaped chopping hoes 
+
+obtaining plant samples for genetics lab work
+
+recording of data for all nurseries and crossing blocks
+Recording of Yield Trial observations/data during growing season
+
+placement of shoot bags
+placement of tassel bags
+cutting back silks
+manual selfings (with date of pollination), cross-pollinations, pollination of families in Sibbing Nursery blocks 
+
+harvest of isolated Open Pollinated Populations/Heterotic Pools/Landraces
+harvest of all Nurseries and Crossing Blocks
+harvest of all Yield Trials including harvest data collection
+
+drying of all nursery and crossing block material in drying cupboard
+shelling, weighing, data collection and packaging/storage of seed from all nurseries and crossing blocks 
+
+Shipment of Seed to Winter Nursery
+
+Compilation and collation of all data for maize Yield Trials (preplant, postplant, harvest, postharvest)
+Completion of Yield Trial Reports
+
+Creation of crossing block seed planting lists (females)
+Creation of Inbreeding Nursery Seed Planting List
+Creation of Sibbing Nursery Seed Planting List
+Creation of Yield Trial experimental designs (RCB, lattice etc.)
+
+Creation of Hospital/Disease resistance experimentation planting lists - disease nurseries have potential disastrous consequences so will be left as an added feature for an expert to design and create
+
+Filling numbered coin envelopes with designated female seed for crossing blocks according to Planting List
+-----------------------------------------------------------------
+FIELD WORK (this post and its duties will usually be automated and left as a possible feature to add in later versions)
+creating the seedbed (usually field cultivator, disc harrow)
+--- exception: measuring and marking pathways for nurseries, Yield Trials and some crossing block patterns will be done by player using 30m/100 ft. measuring tape and 30 cm/12 in. wooden stakes---
+marking the pathways with a tractor-pulled 2-row disc implement (upgrade to check-wire planter, laser guided, GPS etc.)
+creating the seedbed
+applying UREA (there could be a lot of alternative methods of applying nitrogen here and at different times of the year)
+planting
+herbicide application
+cultivating rows
+backpack herbicide spot application
+
+field scouting work (diseases, pests etc.)
+backpack herbicide spot applications
+insecticide/pesticide application if necessary (never required 1995-1999 inclusive)
+
+Harvest of Yield Trial Fields
+mowing yield trial field(s) with field mower or chain flail
+ploughing yield trial field(s) if crop residue excessive
+discing of all fields
+-----------------------------------------------------------------
+Work in the genetics lab and related work in the field such as obtaining leaf samples etc.
+(I would like to use Labster for this if a licence can be obtained) 
+The goal-based Genetics Lab scenarios will be left to someone with extensive knowledge of genetics lab work. It should focus on actual practice and doing things rather than reading or watching things.
+Work related to chemical lab work involving pH, soil samples, soil type, soil nutrient levels, protein, lysine levels of seeds etc.
   --------------------------------------------------------------------------------------------------------------
   Assigned and self-selected research work (including BIG QUESTIONS MMO/group collaborative internet research)
   --------------------------------------------------------------------------------------------------------------
   Unlocked equipment
+  white 1/2 ton pickup truck (to be used by plant breeder to inspect remote Yield Trial plots and collect data, inspect isolated crossing blocks and isolated open-pollinated landraces/heterotic pools/family populations e.g. B73, Antigua, Tuxpeno, Lancaster, B14, Jala, Cuszco, Choclo, FLOP - Flint Open Pollinated)
+  jab planters
   tractor, 
   (4-row, 30 in. maize planter), 
-  cones for maize plot planting,
+  4 cones for maize plot planting,
   Dark brown half ton pickup with diesel fuel tank for tractor (pump handle/electric)
   Gleaner K2 3-row plot combine (has modifications for plot work and sample weight and moisture content electronics)
-  drying cupboard
-  long handled hoes
+  drying cupboard (electric furnace, 2x4's, plywood, heavy fencing wire rather than chicken wire)
+  long handled hoes (triangular and lower case 'm' shaped and rectangular strip blade)
+  metal file to sharpen hoes
   backpack sprayers
   disc harrow,
   field cultivator,
-  packers,
+  packers/clump breakers (the rotating kind on rear of field cultivator or disc harrow, sometimes 6 rods),
   field mower or chain flail,
   moldboard plough,
   row cultivator,
@@ -358,7 +404,7 @@ Opening Scene - player is imagined as being on a doctor prescribed early morning
   
   unit counting balances 
   electronic scales (up to 100 kg)
-  hand held spring scales
+  hand held spring scales 
   square or rectangular metal cake pans
   funicular pan - (looks like a dustpan with a hole in the handle for pouring) 
   
@@ -375,7 +421,8 @@ Opening Scene - player is imagined as being on a doctor prescribed early morning
   Paully Wally Google All Day
   -------------------------------------------------
   Toy Commander Sega Dreamcast HD 
-      This is an imaginative game with a war theme. I love the imaginative way each room is imagined for each mission and the unlocking of rooms in the house as one progresses.
+      This is an imaginative game with a war theme. 
+      I love the way each room is imagined for each mission and the unlocking of rooms in the house as one progresses.
   https://www.youtube.com/watch?v=tn7BSEuAvCQ
   https://www.youtube.com/watch?v=EU-saNkAd84
   
@@ -383,7 +430,7 @@ Opening Scene - player is imagined as being on a doctor prescribed early morning
       This is a good example of how the maize breeding facility serious game could work.
       The player lives on a boat and receives emails for diving jobs such as taking pictures of specific things or showing another diver something.
       The player can collect pictures of different things in the ocean and make photo albums.
-      The player can also just explore the ocean depths.
+      The player can also just explore the ocean depths and its flora and fauna.
   https://www.youtube.com/watch?v=ECpT_mRR0kg
   https://www.youtube.com/watch?v=pPhEt7So9IA
   
@@ -399,23 +446,29 @@ Opening Scene - player is imagined as being on a doctor prescribed early morning
   https://www.youtube.com/watch?v=0P4mDRlQg7Q
  
  Gene Rummy Card Game by Katrin Becker
+ I would like the Maize Breeding Facility simulation to have a multi-player playable Gene Rummy pack on the kitchen table to be played on breaks or just for fun.
+ A license and/or royalty agreement will need to be obtained.
 https://www.researchgate.net/project/Gene-Rummy-The-Card-Game-for-Learning-About-Genotypes-and-Phenotypes
   http://minkhollow.ca/beckerblog/2017/05/14/gene-rummy-released/
   https://www.slideshare.net/becker/using-cards-games-as-learning-objects
  
 Wageningen University and Research, Plant Breeding Game
 https://www.wur.nl/en/show/Software-Breeding-Game.htm
+ - this little plant breeding game is excellent with simple graphics.
+ - the player is shown simple plants with coloured "berries" and one must make selections to arrive at the highest yield after a certain number of selections.
 
 Growing Food on Mars
 https://www.wur.nl/en/article/Wieger-Wamelink-in-VTR-NWS-about-growing-vegetables-on-Mars.htm
+- there could be scenarios based on breeding plants on Mars in transparent greenhouses or LED lit vertical farms.
 
 Automated Mentors, Tutors and database of  relevant expert stories
 Mu Lambda 165
   https://www.youtube.com/watch?v=6VEaU4G_e7k (very brief)
   https://www.youtube.com/watch?v=6AKdfTMVJUw (longer set of clips)
+  - this is a talking head from a 1970's television show
   
 New Dimensions in Testimony preserves Holocaust survivors' stories as holograms
-One could collect 'war' stories from plant breeders, technicians, employees etc.
+- One could collect 'war' stories from plant breeders, technicians, employees etc.
   https://www.youtube.com/watch?v=w83pe-0noUU
   https://www.youtube.com/watch?v=afdQlCucdPI
   https://www.youtube.com/watch?v=TXr5NMNQBu4
@@ -520,7 +573,10 @@ https://ag.purdue.edu/agry/directory/Pages/gejeta.aspx
 Gebisa Ejeta - Revitalizing Agricultural Research for Global Food Security (2010)
 https://www.youtube.com/watch?v=HeC3RFrPguM
  ===================================================================================
-  
+
+
+
+===================================================================
 ExTRA system for Glitch developer
 Mentoring at XTOL (https://youtu.be/HG-Rv6SXMDQ)
  Somehow the A.I. system of the automated mentor needs to be indexed so that it knows I need the following quote:
@@ -583,10 +639,96 @@ p9.	Expert	Advice	for	New	Developers, Anatomy	of	a	Web	App, You Got This! zine
 
 https://cdn.glitch.com/6d561a98-036e-47a6-b152-a2a66a73d13e/YouGotThisZine.pdf?1519043698801
 =======================================================
+Goal #1: Get modular .js scenes in a scene folder running from ./js/scenes folder.
+NOTE: No ES6 transpiler like Babel installed so may need to add filenames and paths to html file head/body section to import external scene files (?)
+Possibly: add Babel
 
-  
-  
-  
-  
-  
+GOAL: ADD touchscreen player controls for Android touchscreen so I can work offline on Android phone.
+GOAL: Get photonstorm-phaser3-project-template going with ES6 and modular scene files. (Phaser 3.55.2, Webpack and Babel template) Get scenes from scene folder importing and working with ES6 source code
+GOAL: Add Level 1 Fantasy scenes (King's Banquet, World overview, village, Corn and Apple festival, village little people wrestling, Castle interior and story tapestries, secret garden)
+GOAL: Load CSV tile map of building exterior and tile map of building interior with correct tiles (so can see and enter building and explore unlocked areas of building interior first and second floors)
+DONE: Problem was tutorials and examples showed only createLayer() but not createStaticLayer() or createDynamicLayer(). 
+DONE: GOAL: add a blank layer and put stake tiles at sides of field for aisles between ranges marking
+GOAL: Add code to kill game when user chooses EXIT or Credits scrolling finished once or twice.
+GOAL: Create Assets for Level 1 Workroom scene (Building interior, balding NPC, NPC dialogue, NPC stamping animations,Coin Envelope number stamping station, blank coin envelopes, self-advancing number stamper with 6 numbers, numbered coin envelopes, ink bottle, numbering machine ink pads, stylus for changing starting numbers, player stamping animation, dream screen ripples and sound)
+Goal: Create all assets for Level 1 Dream Sequence (King's Quest)
+Goal: Create intro cutscene with player walking along rural gravel road in very early morning
+
+
+(NOTE: may need to put a comment with globals filename, filename etc. for Glitch linter to import files. See calm-potassium. Express routes correct?? put scripts in body?? calm-potassium works fine with scripts in head (MIND THE ORDER OF FILES), need to use app.get, import ???)
+
+Goal: running:  splash screen, menu screen with menu items(Start/Play game, Options, Credits),
+
+In progress: options screen with menu items(toggle Sound, toggle Music),
+
+Done: a background image game scene stand-in, a background image 'game over' scene and a background image scrolling credits scene 
+DONE: In Progress: get scrolling text working in Credits scene (may require loading bitmap text )
+
+Goal: load Options Scene (Vavilov office pic) from js/SceneMain.js
+
+DONE: Goal: create working menu interactive text to change scenes
+
+Goal: move container bodies with keyboard keys, then with touchCursor or Swipe Plugins (hopefully it works with Phaser 3)
+Goal: figure out how to move a container (body?) with keyboard keys
+Goal: Add Touch cursor plug-in or Swipe plugin for mobile development work and preview
+Goal: sync sprite animations with movement of container
+Goal: use texture render to add labels/names to sprites
+
+Done: Goal: load a csv tile map // not correct tileset loaded or wrong height, width ??
+
+Goal: load an outdoors/field/building exterior scene
+In progress: added csv file but used wrong tileset so map had wrong tiles
+
+Goal: create an exterior building scene
+Goal: create an interior building scene with blacked out locked areas - 2 floors
+
+Goal: seamlessly transition from exterior building scene to interior building scene when door threshold crossed by sprite
+
+Goal: allow exploration of upper floor and workroom on first floor
+Goal: create csv map
+      upper floor: open areas - conference room, men's washroom, women's washroom, kitchen
+      upper floor: locked areas/room - Plant Breeder's Office at the west end of the E-W hall, LTSP Server room, Research Station Manager's Office, Secretary/Administrative Assistant Office, Small meeting rooms/offices, shower
+      upper floor: unlocked areas/rooms - conference room/supervised course room - conference room table, chairs, front wall presentation/projection area (BIG screen tv), personal holographic projection/virtual reality projection devices, automated mentor kiosk/live video mentor connection
+                                        - kitchen - large rectangular table surrounded by chairs, a Gene Rummy pack on the table, refrigerator containing a bottle of water and a sandwich, stove/oven, sink, counter, cupboards 
+
+Goal: create elderly male pattern balding NPC for initial encounter
+Goal: create props for stamping numbers on coin envelopes by elderly NPC and by player
+Goal: create dialog flow between player and elderly NPC
+Goal: Create first fantasy adventure and task: King's Quest (medieval)
+
+Goal: On completion of first Level 1 quest, reward player with Jab planters(4), White pickup truck, unlocked seed storage area and automated mentor answers to questions on a career in plant breeding
+
+DONE - Goal: get background image scenes running
+DONE - Goal: Get load progress screen running - simple code
+
+DONE - Goal: load finite state machine starter code as a game scene with text labeled containers with sprite animations
+             - based on slight modifications to Mark Kelly's phaser-fsm-example project on Glitch (https://www.mkelly.me/blog/phaser-finite-state-machine/)
+=====================================================================================================================================
+
+
+  photonstorm-phaser3-project-template - Phaser 3.55.2, Webpack, ES6 (so I can use modern Javascript and modular files)
+Phaser 3 - the-great-conversation-bots (remix of finite state machine(fsm) starter with sprite name text in containers with animated sprite)
+Phaser 3 - calm-potassium - remix of phaser-many-scenes1 with all js files in js folder
+
+Phaser 3.16.2 - lilac-duckling (original finite state machine starter - no alterations yet) 
+Phaser 3.16.2 - chalk-wedelia (original finite state machine starter - no alterations)
+
+Phaser 3.21.0 (phaser.js) - calm-potassium example for loading external scene files (works if .js files put in js folder and path for scripts in index.html changed to correspond. loader is using github assets folder)
+Phaser 3.16.2 (Node pkg) - hexagonal-professor "A sample app illustrating how to use phaser-tiled-json-external-loader to load Tiled tilemaps with external tilesets."
+
+Phaser 3.19.0 - pie-ferret (example Phaser code with background image and particle emitter)
+
+Phaser 2.6.2 - marbled-santanaraptor (Glitch Game Club Phaser examples)
+Phaser 2.6.2 (CDN)- spotted-polka (original platformer game assets, (note in head of index.html: <script>src="js/game.js"</script>))
+Phaser 2.6.2 (CDN) - alpine midnight (same as spotted polka but with additional code that makes sprite change size when colliding with another sprite)
+Phaser 2.4 - laserblue-mitchymaize(private, GitHub clone and GitHub fork of Matt MacFarland's Game States Tutorial - the DRY Mixins code was a bit too advanced for me at the time)
+
+SQLite3 - slime-aspen (code exploration of SQLite3 using lists of Great Ideas, authors, web links)
+
+Glitch.com  - https://www.nexmo.com/blog/2019/07/05/javascript-hotline-with-opentok-and-nodejs-dr (for live Mentor linkage)
+Node.js - https://cdn.glitch.com/6d561a98-036e-47a6-b152-a2a66a73d13e/YouGotThisZine.pdf?1519043698801
+
+glitch.com/~intro-to-node
+glitch.com/website-starter-kit
+glitch.com/~async-await-playground
   

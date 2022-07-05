@@ -1,173 +1,3 @@
-// import SwipePlugin from 'phaser3-swipe-plugin'
-/* global Phaser, BootScene, MenuScene, OptionsScene, SceneMain, GameScene, FSMScene, GameOverScene, CreditsScene */
-
-// Current Task: add a second layer to the tile map for row stakes
-// Task: Load a CSV map instead of an image in the Game scene
-// getting closer - can load a map based on an array (problem was that a keyword was changed so official examples and pro examples using old keyword didn't work)
-
-
-// Backburner Task: Get an external scene file loading using filenames in index.html head (note use of //global scenename.js for linter lines at top of files in calm-potassium)
-// e.g at top of game.js which defines config,  /* global Phaser, splashScene, loaderScene, LayScene, hatchScene */
-//
-// How to kill the game after credits roll once or twice
-//
-//Done: task: get vertical scroller working in Credits scene (uses bitmap text)* this bitmap text may be copyrighted and arrangements may need to be made to use it in production version or replaced. This is educational use at the moment.
-// still minor formatting problems with vertical scroller to work out for production credits such as centering, font size, and line length.
-
-// The following code might be for ES6 and might not work without Babel transpiling. Babel has not been installed for this project and according to the package.json, node v. 8.x is being used. Upgrade to node 10.x
-// import {SceneMain} from './js/SceneMain.js';
-// let sceneMain = new SceneMain();
-// this.game.scene.add('SceneMain', sceneMain);
-
-
-/* Problem
-
-   I have 8 scenes defined in client.js that run ok.
-   BootScene, MenuScene, OptionsScene, SceneMain, GameScene, FSMScene, GameOverScene, CreditsScene
-   I want to eventually run all of them as separate external files from a scenes folder
-   I am trying to get the external file js/SceneMain.js to replace SceneMain in client.js
-   I don't have Babel installed for transpiling es6 to es5 
-   
-   Fixing this with ES5 involves:
-       commenting out the SceneMain scene defined in this file (client.js) 
-       
-       putting <script src="js/SceneMain.js" </script> in the head of index.html // is the PATH correct? e.g. "./js/SceneMain.js"
-       
-       making sure the Express routing is correct in server.js 
-       
-   
-   
-https://rexrainbow.github.io/phaser3-rex-notes/docs/site/scene/  
-https://rexrainbow.github.io/phaser3-rex-notes/docs/site/scenemanager/  
-https://phaser.io/phaser3/devlog/119
-https://phaser.io/phaser3/devlog/121
-http://labs.phaser.io/index.html?dir=scenes/&q=
-https://medium.com/@jerra.haynes/a-real-persons-guide-to-phaser-3-or-how-i-learned-to-stop-worrying-and-love-the-gun-part-1-9cc6361f377c
-*/
-// NO ES6 so need to put file names in header of index.html
-//import {TitleScene} from './js/TitleScene'; // result is white screen
-//import TitleScene from './js/TitleScene'; // result is white screen
-//var titleScene = new TitleScene();// result is white screen
-//let titleScene = new TitleScene();// result is white screen
-//this.game.scene.add('TitleScene', titleScene);// titleScene not defined
-
-
-
-
-// Mark Kelly's fsm code has been put into its own scene (FSMScene) but the StateMachine class and State class are defined here at the start of the code
-// The StateMachine class is for the sprite animations not game states. Game states are done using scenes
-class StateMachine {
-  constructor(initialState, possibleStates, stateArgs=[]) {
-    this.initialState = initialState;
-    this.possibleStates = possibleStates;
-    this.stateArgs = stateArgs;
-    this.state = null;
-
-    // State instances get access to the state machine via this.stateMachine.
-    for (const state of Object.values(this.possibleStates)) {
-      state.stateMachine = this;
-    }
-  }
-
-  step() {
-    // On the first step, the state is null and we need to initialize the first state.
-    if (this.state === null) {
-      this.state = this.initialState;
-      this.possibleStates[this.state].enter(...this.stateArgs);
-    }
-
-    // Run the current state's execute
-    this.possibleStates[this.state].execute(...this.stateArgs);
-  }
-
-  transition(newState, ...enterArgs) {
-    this.state = newState;
-    this.possibleStates[this.state].enter(...this.stateArgs, ...enterArgs);
-  }
-}
-// */
-// /*
-class State {
-  enter() {
-
-  }
-
-  execute() {
-
-  }
-}
-// */
-
-
-// Each scene class is defined in this one file but I want to eventually make each scene a separate external file in the js folder
-// The scenes are BootScene, MenuScene, OptionsScene, GameScene, FSMScene, GameOverScene, CreditsScene
-// FSMScene is an example of a scene that would be called by GameScene in the finished product
-
-//class BootScene extends Phaser.Scene {
-var BootScene = new Phaser.Class({
-    Extends: Phaser.Scene,
-    initialize:
-    function BootScene ()
-    {
-      Phaser.Scene.call(this, { key: 'bootScene', active: false });
-    },
-    
-    preload ()
-    {
-        var progress = this.add.graphics();
-
-        
-        this.load.on('progress', function (value) {
-
-            progress.clear();
-            progress.fillStyle(0xffffff, 1);
-            progress.fillRect(0, 270, 800 * value, 60);
-
-        });
-
-        this.load.on('complete', function () {
-
-            progress.destroy();
-
-        });    
-      
-       
-      this.load.image('splashScreen', 'https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2Flossy-page1-800px-NRCSOH07012_-_Ohio_(717402)(NRCS_Photo_Gallery).tif.jpg?v=1574372053041');
-           //  It's essential that the key given here is the exact class name used in the JS file. It's case-sensitive.
-        //  See the SceneB.js file and documentation for details.
-//    this.load.sceneFile('ExternalScene', '/js/sceneMain.js'); //
-    },
-  
-    create ()
-    {
-                  
-        this.splashScreen = this.add.sprite(400, 300, 'splashScreen').setScale(1.0, 1.2).setOrigin(0.5, 0.5);
-    // set.Origin(0.5);
-      
- 
-        
-      //      var image = this.add.image(400, 300, 'splashScreen').setScale(1);
-  
-    //  Default text with no style settings
-        var text10 = this.add.text(150, 0, 'Phaser 3', { fontFamily: 'Arial', fontSize: 128, color: '#00ff00' }).setAlpha(0.6);
-        text10.setStroke('#000000', 6);
-
-    //  Pass in a basic style object with the constructor
-        this.add.text(200, 210, 'Splash Screen', { fontFamily: 'Arial', fontSize: 64, color: '#0000ff' });
-
-    //  Or chain calls like this:
-        this.add.text(30, 380, 'Phaser').setFontFamily('Arial').setFontSize(64).setColor('#00ff00').setBackgroundColor('#ffff00').setPadding(16).setAlpha(0.5);
-      
-        this.add.text(100, 560, 'Click or tap on the words directly above to see a new scene',  {fontFamily: 'Arial', fontSize: 24, color: '#00ffff' }).setStroke('#000000', 4);
-      
-        var nextScene = this.add.text(200, 500, 'NEXT SCENE >>>', {fontFamily: 'Arial', fontSize: 48, color: '#0000ff'}).setStroke ('0x0000ff',4);
-        nextScene.setInteractive().on('pointerdown', function() {
-          console.log('From BootScene to MenuScene');  
-          this.scene.scene.start('menuScene');
-        });      
-      }
-});
-
 var MenuScene = new Phaser.Class({
     Extends: Phaser.Scene,
     initialize:
@@ -188,9 +18,11 @@ var MenuScene = new Phaser.Class({
     //    this.fieldpic = this.add.image(400, 300, 'fieldpic');
         this.fieldpic = this.add.sprite(400, 300, 'fieldpic').setOrigin(0.5, 0.5)
         this.add.text(150, 0, 'Mitchy\'s Maize', { fontFamily: 'Arial', fontSize: 84, color: '#ffff00' }).setStroke('0x0000ff', 4);
-        var txt1 = this.add.text(300, 270, 'Start Game', { fontFamily: 'Arial', fontSize: 64, color: '#ffffff' }).setStroke('0x0000ff', 4);
-        var txt2 = this.add.text(300, 370, 'Options', { fontFamily: 'Arial', fontSize: 64, color: '#ffffff' }).setStroke('0x0000ff', 4);
-        var txt3 = this.add.text(300, 470, 'Credits', { fontFamily: 'Arial', fontSize: 64, color: '#ffffff' }).setStroke('0x0000ff', 4);
+        var txt1 = this.add.text(300, 280, 'Start Game', { fontFamily: 'Arial', fontSize: 48, color: '#ffffff' }).setStroke('0x0000ff', 4);
+        var txt2 = this.add.text(300, 340, 'Options', { fontFamily: 'Arial', fontSize: 48, color: '#ffffff' }).setStroke('0x0000ff', 4);
+        var txt3 = this.add.text(300, 400, 'Level Selection (under construction)', { fontFamily: 'Arial', fontSize: 48, color: '#ffffff' }).setStroke('0x0000ff', 4);
+        var txt4 = this.add.text(300, 460, 'Credits', { fontFamily: 'Arial', fontSize: 48, color: '#ffffff' }).setStroke('0x0000ff', 4);
+        var txt5 = this.add.text(300, 520, 'Exit', { fontFamily: 'Arial', fontSize: 48, color: '#ffffff' }).setStroke('0x0000ff', 4);
 
 // Make interactive text (bad example of DRY!!)
         txt1.setInteractive().on('pointerdown', function() {
@@ -203,9 +35,14 @@ var MenuScene = new Phaser.Class({
             this.scene.scene.start('optionsScene');
         });
       
-        txt3.setInteractive().on('pointerdown', function() {
+        txt4.setInteractive().on('pointerdown', function() {
             //Let's start another scene with start
             this.scene.scene.start('creditsScene');
+        });
+      
+        txt5.setInteractive().on('pointerdown', function() {
+            //destroy game object https://phaser.io/examples/v3/view/game-config/game-destroy-with-multi-scenes
+            this.scene.sys.game.destroy(true); // seems to work, https://newdocs.phaser.io/docs/3.55.2/Phaser.Game#destroy
         });     
     }
 });
@@ -290,143 +127,81 @@ var SceneMain = new Phaser.Class({
     {
       Phaser.Scene.call(this, { key: 'sceneMain', active: false });
     },
+    
+  
     preload()
     {
 //      this.load.tilemapCSV("map", "https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2Ffieldtilled.csv?v=1583797600994"); // tilled field 
 //      this.load.image("tiles", "https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2Fplowed_soil.png?v=1574373407043"); // plowed soil       
 
-      // load csv map (not working but I had it working once)     
-       this.load.image("tiles", "https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2FFieldSoil.png?v=1574372043813"); // modified tileset
-       this.load.image("flags", "https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2Ftags.png?v=1574702648218");
-       this.load.image("redTag", "https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2FRedTag.png?v=1574373422414");
-       this.load.image("rowStake", "https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2FModified.png?v=1574373876704");
-      
-      //       this.scene.load.tilemapCSV("map", "https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2Ffield.csv?v=1583797586940");        
-//       this.load.tilemapCSV("map", "https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2Ffield.csv?v=1583797586940");  // CSV                      
-       
-       this.load.spritesheet('tractorWest', 'https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2FTSTWest2.png?v=1574373448745', {
-         frameWidth: 100,
-         frameHeight: 75,
-       });
-       this.load.spritesheet('tractor', 'https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2FTSTEast.png?v=1574373457971', {
-         frameWidth: 100,
-         frameHeight: 75,
-       });
-              
-      this.load.image('greeting', 'https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2FThreeStakes.png?v=1574373846656'); // 3 stakes path marking
+       this.load.image("exterior", "https://cdn.glitch.global/dad6f70b-d7f8-4b6b-812a-427943582a20/flatRoof4.png?v=1646414164914");// have not found proper roofing tile to complete angled roof yet
+/*
+       // load TILED json map
+       this.load.image('fieldTileset', 'https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2FFieldSoil.png?v=1574372043813');// tileset
+       this.load.tilemapTiledJSON('map', 'https://cdn.glitch.global/dad6f70b-d7f8-4b6b-812a-427943582a20/tilemap-editor%20(10).json?v=1647205447966'); // tilemap
+*/
+/* building exterior
+    https://cdn.glitch.global/dad6f70b-d7f8-4b6b-812a-427943582a20/colonialTileset.png?v=1647543905050 // colonial tileset
+    https://cdn.glitch.global/dad6f70b-d7f8-4b6b-812a-427943582a20/tilemap-editor%20(5).json?v=1647544214386 // flatRoof
 
- },   // this comma seems to be needed for the code to work but does not appear in the Phaser 3 examples
+*/
+      
+      
+      
+      
+      
+      
+    },   // this comma seems to be needed for the code to work but does not appear in the Phaser 3 examples
 
     create()
     { 
- //     this.add.text(10, 5, 'Testing... Testing...', { fontFamily: 'Arial', fontSize: 12, color: '#ffff00' }); // blocked by tile map
-        
-      // Load a map from a 2D array of the Field Soil tile indices (7 rows x 6 columns)
-      var level = [
-        [ 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38],
-        [ 38, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 23, 23, 23, 23, 23, 1, 1, 1, 2, 38],
-        [ 38, 3, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 5, 38],
-        [ 38, 3, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 5, 38],
-        [ 38, 3, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 5, 38],
-        [ 38, 3, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 5, 38],
-        [ 38, 21, 26, 26, 18, 18, 18, 18, 26, 26, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 15, 12, 13, 22, 38],
-        [ 38, 21, 20, 20, 17, 17, 17, 17, 20, 0, 1, 2, 3, 4, 5, 20, 20, 20, 9, 10, 11, 14, 16, 22, 38],
-        [ 38, 21, 20, 20, 17, 17, 17, 17, 20, 6, 7, 8, 9, 10, 11, 20, 20, 20, 20, 20, 20, 20, 20, 22, 38],
-        [ 38, 21, 20, 20, 17, 17, 17, 17, 20, 12, 13, 14, 15, 16, 17, 20, 15, 12, 13, 20, 20, 20, 20, 22, 38],
-        [ 38, 21, 20, 20, 17, 17, 17, 17, 20, 18, 19, 20, 21, 22, 23, 20, 16, 11, 14, 20, 20, 20, 20, 22, 38],
-        [ 38, 21, 41, 25, 19, 19, 19, 19, 25, 24, 25, 26, 27, 28, 29, 25, 25, 25, 25, 20, 20, 20, 41, 22, 38],
-        [ 38, 21, 26, 26, 18, 18, 18, 18, 26, 30, 31, 32, 33, 34, 35, 26, 26, 26, 26, 20, 20, 20, 20, 22, 38],
-        [ 38, 21, 20, 20, 17, 17, 17, 17, 20, 36, 37, 38, 39, 40, 41, 20, 20, 20, 20, 20, 20, 20, 20, 22, 38],
-        [ 38, 21, 20, 20, 17, 17, 17, 17, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 22, 38],
-        [ 38, 21, 41, 25, 19, 19, 19, 19, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 41, 22, 38],
-        [ 38, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 24, 24, 24, 24, 24, 24, 24, 24, 8, 38],       
-        [ 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38]
-     ];
+       this.exterior = this.add.sprite(400, 300, 'exterior').setScale(0.37, 0.37).setOrigin(0.5, 0.5); // comment out to see array tilemap in upper left corner and tileset image at center
 
-  // When loading from an array, make sure to specify the tileWidth and tileHeight
-       var map = this.make.tilemap({ data: level, tileWidth: 32, tileHeight: 32 });
-       var tiles = map.addTilesetImage("tiles");
+/*
+// add code for tilemap here
+       var map = this.make.tilemap({ key: 'map' });
+       var tiles = map.addTilesetImage('fieldTileset');
 
-      //  //  To use multiple tilesets in a single layer, pass them in an array like this:
-//    map.createLayer('Tile Layer 1', [ groundTiles, itemTiles, platformTiles ]);
-      
-      /* 
-      // include additional tiles or make new tileset
-      var flags = mao.add.TilesetImage("flags");
-      var redTag = map.add.TilesetImage("redTag");
-      var rowStake = map.add.TilesetImage("rowStake");
- */     
-
-       var layer = map.createStaticLayer(0, tiles, 0, 0);
-
-      //       layer.setScale(2);
-      // layer1.setAlpha(0.5);
-// Map size
-//    layer.width = 400;
-      
-
-       this.tractor = this.physics.add.sprite(650, 370, 'tractor', 0).setCollideWorldBounds(true);
-       this.tractorWest = this.physics.add.sprite(220, 370, 'tractorWest', 0).setCollideWorldBounds(true);
-      
-//       var layer2 = map.createBlankLayer(1, tiles, 0, 0); // blocks out text
-//       var layer2 = map.createBlankLayer('layer2', tiles); // blocks out text below
-//      layer2.fill(41, 41, 41, 41, 41);
-//      layer2.randomize(0, 0, 25, 13, [ 44, 45, 46, 47, 48 ]);
- 
-  // in update
- //   map.putTileAt(15, pointerTileX, pointerTileY); 
-//       map.putTilesAt([ 104, 105, 106, 107 ], pointerTileX, pointerTileY);
- 
-      // You can also place a 2D array of tiles at a location
- //               map.putTilesAt([
- //                   [ 49, 50 ],
- //                   [ 51, 52 ]
- //               ], pointerTileX, pointerTileY);     
- 
- 
-//      var worldPoint = this.input.activePointer.positionToCamera(this.cameras.main);
-//        var tile = map.getTileAtWorldXY(worldPoint.x, worldPoint.y);      
-      //      var tile = map.getTileAtWorldXY(worldPoint.x, worldPoint.y);
-      // This will replace all instances of the selected tile with a stake (tile id = 41).
-//        map.replaceByIndex(tile.index, 41);    
- // You can also replace within a specific region (tileX, tileY, width, height):
-        // map.replaceByIndex(tile.index, 41, 5, 5, 15, 15); 
-      
-      
-      
-//       var layer2 = map.createStaticLayer("layer2", tiles, 0, 0);
- 
-      
-      
-      
-      /*
-      //   Code to show csv map (not working)
-//        console.log(this.cache.tilemap.entries)
-//        var map = this.make.tilemap({ key: 'map', tileWidth: 32, tileHeight: 32 });
-        var map = this.scene.add.tilemap('map');
-//        this.map = this.scene.make.tilemap({ key: 'map', tileWidth: 32, tileHeight: 32 });
-        var tileset = map.addTilesetImage('tiles');
-        var layer = map.createStaticLayer("layer1", tileset, 0, 0); // layer index, tileset, x, y
+       var bottom = map.createStaticLayer('Bottom Layer', tiles, 0, 0);
+       var middle = map.createStaticLayer('Middle Layer', tiles, 0, 0);
+       var top = map.createStaticLayer('Top Layer', tiles, 0, 0);
 */
-//        layer.skipCull = true;
+      
+    // When you create a layer, that becomes the currently 'selected' layer within the map. That
+    // means any tile operation on the map right now will be operating on 'Top Layer'.
 
- //       this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+    // Let's change that:
+//       selectLayer(top);
 
- //       this.tiles = this.add.image(400, 300, 'tiles'); // NOTE: behind greeting screen image???
-//        this.greeting = this.add.sprite(400, 300, 'greeting').setScale(0.98, 0.94).setOrigin(0.5, 0.5); // comment out to see array tilemap in upper left corner and tileset image at center
- 
+   /*
+       //  To use multiple tilesets in a single layer, pass them in an array like this:
+    map.createLayer('Tile Layer 1', [ groundTiles, itemTiles, platformTiles ]);
+
+    // map.createLayer('Tile Layer 1', [ groundTiles, itemTiles, platformTiles ]);
+
+    //  Or you can pass an array of strings, where they = the Tileset name
+    // map.createLayer('Tile Layer 1', [ 'kenny_ground_64x64', 'kenny_items_64x64', 'kenny_platformer_64x64' ]);
+    
+    */
+
+
+      
       ///*    // implement text wrapping for 2 and 6, if possible
         this.add.text(90, 15, 'External Scene (Scene Main)', { fontFamily: 'Arial', fontSize: 48, color: '#ffff00' });
         this.add.text(90, 70, 'Goal: Create tile maps', { fontFamily: 'Arial', fontSize: 32, color: '#ffffff' });
-        this.add.text(120, 110, '1. Empty field', { fontFamily: 'Arial', fontSize: 16, color: '#ffffff' });
-        this.add.text(120, 130, '2. Marked field with stakes and lines plus animated marking with tractor and marking', { fontFamily: 'Arial', fontSize: 16, color: '#ffffff' });
-        this.add.text(140, 150, 'implement sprite', { fontFamily: 'Arial', fontSize: 16, color: '#ffffff' });
-        this.add.text(120, 170, '3. Unplanted marked ranges plus tractor and 4-row maize planter animated sprite', { fontFamily: 'Arial', fontSize: 16, color: '#ffffff' });
-        this.add.text(120, 190, '4. Planted and growing ranges', { fontFamily: 'Arial', fontSize: 16, color: '#ffffff' });
-        this.add.text(120, 210, '5. Research station building exterior (initially, no parked employee cars)', { fontFamily: 'Arial', fontSize: 16, color: '#ffffff' });
-        this.add.text(120, 230, '6. Large world (+120 rows, +18 ranges plus gravel roads, laneway, main site', { fontFamily: 'Arial', fontSize: 16, color: '#ffffff' });
-        this.add.text(140, 250, '16.1 hectares/40 acres)', { fontFamily: 'Arial', fontSize: 16, color: '#ffffff' });
-        this.add.text(120, 270, '7. Intro Gravel Road Walking early morning sunsight cutscene', { fontFamily: 'Arial', fontSize: 16, color: '#ffffff' });
+        this.add.text(120, 110, '7. Intro Gravel Road Walking early morning sunsight cutscene', { fontFamily: 'Arial', fontSize: 16, color: '#ffffff' });
+        this.add.text(120, 130, '1. Research station building exterior (initially, no parked employee cars)', { fontFamily: 'Arial', fontSize: 16, color: '#ffffff' });
+        this.add.text(120, 150, '2. Empty field', { fontFamily: 'Arial', fontSize: 16, color: '#ffffff' });
+        this.add.text(120, 170, '3. Marked field with stakes and lines plus animated marking with tractor and marking', { fontFamily: 'Arial', fontSize: 16, color: '#ffffff' });
+        this.add.text(140, 190, 'implement sprite', { fontFamily: 'Arial', fontSize: 16, color: '#ffffff' });
+        this.add.text(120, 210, '4. Unplanted marked ranges plus tractor and 4-row maize planter animated sprite', { fontFamily: 'Arial', fontSize: 16, color: '#ffffff' });
+        this.add.text(120, 230, '5. Planted and growing ranges', { fontFamily: 'Arial', fontSize: 16, color: '#ffffff' });
+        this.add.text(120, 250, '6. Large world (+120 rows, +18 ranges plus gravel roads, laneway, main site', { fontFamily: 'Arial', fontSize: 16, color: '#ffffff' });
+        this.add.text(140, 270, '16.1 hectares/40 acres)', { fontFamily: 'Arial', fontSize: 16, color: '#ffffff' });
+        this.add.text(200, 300, 'FOR SALE', { fontFamily: 'Arial', fontSize: 64, color: '#00ff00' });
+        this.add.text(120, 360, 'Land, Building and Maize Germplasm', { fontFamily: 'Arial', fontSize: 32, color: '#00ff00'});
+        this.add.text(120, 390, 'ASKING PRICE: $9 000 000 USD', { fontFamily: 'Arial', fontSize: 32, color: '#000000'});
+        this.add.text(300, 420, '(or Linden Dollar equivalent)', { fontFamily: 'Arial', fontSize: 12, color: '#ffffff'});
       
         var nextScene = this.add.text(200, 500, 'NEXT SCENE >>>', {fontFamily: 'Arial', fontSize: 48, color: '#0000ff'}).setStroke ('0x0000ff',4);
         nextScene.setInteractive().on('pointerdown', function() {
@@ -447,8 +222,9 @@ var GameScene = new Phaser.Class({
     preload()
     {
 
-// https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2FTruth_of_the_Legend.ogg?v=1574372196389  // intended opening/intro music for cutscene
-// https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2FCool_Rock.ogg?v=1574372248623 // for working scene
+// Music and Sound Effects from Freesound https://freesound.org/ and Incompetech: Royalty-Free Music https://incompetech.com/music/
+// https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2FTruth_of_the_Legend.ogg?v=1574372196389  // intended opening/intro music for cutscene (https://www.youtube.com/watch?v=oRJa-h9JvoQ) - You MUST contact the artist if you wish to use the music on any kind of project outside of YouTube.
+// https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2FCool_Rock.ogg?v=1574372248623 // for working scene 
 // https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2F18976__bebeto__loop005-alternative.wav?v=1574372376532      
 // https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2F24046__bebeto__loop029.wav?v=1574372389873 // stamping music
 // https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2Firon_man.ogg?v=1574372265355  // iron man
@@ -485,8 +261,9 @@ https://youtu.be/Owg-NaUoHHo
         'https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2Firon_man.ogg?v=1574372265355'
        ]);
        this.load.image('gamescene', 'https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2F566px-Relief_with_Maize_Goddess_(Chicomec%C3%B3atl).jpg?v=1597938902355');//Maize Goddess Chicomecoatl 
+       this.load.image('quest', 'https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2FScreenshot%202019-06-03%20at%2011.32.58%20AM.png?v=1574375060643');
 
-// Images that could be used for a timed slide show using alpha and timer loop     
+      // Images that could be used for a timed slide show using alpha and timer loop     
 //        this.load.image('greeting', 'https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2FChildrenTextBox.png?v=1574374247749'); //Aranix and Midori in a path/aisle of the cornfield
 //       this.load.image('greeting', 'https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2FExteriorBldg2.png?v=1574373863351'); //building exterior with cars, Midori and Aranix 
 //       this.load.image('greeting', 'https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2FTwoRanges.png?v=1574373854848'); // two ranges, comment out to see array tilemap 
@@ -502,8 +279,8 @@ https://youtu.be/Owg-NaUoHHo
       // this.gameScene = this.add.image(400, 300, 'gamescene');
        // this.gamescene.setScale(0.3,0.4);
         this.gameScene = this.add.sprite(400, 300, 'gamescene').setScale(1.1, 1.1).setOrigin(0.5, 0.5);
-      
-        this.add.text(10, 15, 'Introduction Scene', { fontFamily: 'Arial', fontSize: 48, color: '#ffff00' });
+        this.quest = this.add.sprite(400, 400, 'quest').setScale(0.8, 0.8).setOrigin(0.5, 0.5).setAlpha(0.5);
+        this.add.text(10, 15, 'Introduction and Early Morning Walk Cutscene Scene', { fontFamily: 'Arial', fontSize: 24, color: '#ffff00' });
  
         var nextScene = this.add.text(200, 500, 'NEXT SCENE >>>', {fontFamily: 'Arial', fontSize: 48, color: '#0000ff'}).setStroke ('0x0000ff',4);
         nextScene.setInteractive().on('pointerdown', function() {
@@ -571,8 +348,8 @@ var FSMScene = new Phaser.Class({
             frameHeight: 32
           });
 //         this.load.image('bg', 'https://cdn.glitch.com/59aa1c5f-c16d-41a1-bfd2-09072e84a538%2Fbg.png?1551136995353');
-         this.load.image('bg', 'https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2FTwoRanges.png?v=1574373854848'); // two ranges, comment out to see array tilemap   
-       
+         this.load.image('bg', 'https://cdn.glitch.me/dad6f70b-d7f8-4b6b-812a-427943582a20%2FInteriorBldg.png'); //  
+       // https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2FTwoRanges.png?v=1574373854848'
       // add ball from Phaser 3 example Container/Sprite with text
       // https://github.com/photonstorm/phaser3-examples/blob/master/public/assets/demoscene/ball.png
          this.load.image('ball', 'https://cdn.glitch.com/0b1bad74-37f5-487d-b0f1-7d6bac92f07f%2Fball.png?v=1575235181076'); // from github Phaser 3 public/assets folder
@@ -594,6 +371,10 @@ var FSMScene = new Phaser.Class({
           var text2;
           var text3;
           var text4;
+          var text5;
+          var text6;
+          var text7;
+          var text8;
  //     var test2;
 //      this.impact.world.setBounds();
 /*   
@@ -694,11 +475,29 @@ var FSMScene = new Phaser.Class({
          // there is a large margin on the left. Find out what the cause is ?!?!?!
           test1 = this.add.text(100, 10, 'Phaser 3.21.0', { fontSize: 24, color: '#ff0000' }).setOrigin(0.5);
           text2 = this.add.text(180, 40, 'Research Station Building Interior', { fontSize: 16, color: '#ffff00' }).setOrigin(0.5);         
-          text3 = this.add.text(540, 200, '<-- You can move this sprite with arrow keys', { fontSize: 18, color: '#ff0000' }).setOrigin(0.5);
+          text3 = this.add.text(450, 250, '<-- You can move this sprite with arrow keys', { fontSize: 18, color: '#ff0000' }).setOrigin(0.5);
+          text4 = this.add.text(250, 180, 'I want easy to sweep and clean floors, NOT wooden floorboards!\n Linoleum? Epoxy? Vinyl? Resin? Concrete??', { fontSize: 12, color: '#ffffff' }).setOrigin(0.5);
+          //text5 = this.add.text(170, 190, 'Linoleum? Epoxy? Vinyl? Resin? Concrete??', { fontSize: 12, color: '#ffffff' }).setOrigin(0.5);
+          text6 = this.add.text(650, 320, 'SEED STORAGE AREA (locked)', { fontSize: 12, color: '#ffffff' }).setOrigin(0.5);
+          text7 = this.add.text(680, 500, 'Stairs to second floor', { fontSize: 12, color: '#ffffff' }).setOrigin(0.5);
+          text8 = this.add.text(400, 340, 'SOLE Mate', { fontSize: 12, color: '#0000ff' }).setOrigin(0.5);
+      
           this.make.text({
-              x: 400,
+              x: 640,
+              y: 50,
+              text: 'Seed storage area on first floor is locked.\nCompletion of \'Quest for the Rose\' required to open.\n\nGarage area on first floor is locked.',
+              origin: { x: 0.5, y: 0.5 },
+              style: {
+                  font: 'bold 8px Arial',
+                  fill: 'white',
+                  wordWrap: { width: 300 }
+              }
+          }); 
+            
+          this.make.text({
+              x: 270,
               y: 300,
-              text: 'Goal: Load a csv tile map',
+              text: 'Goal: Create and Load a Multilayer Tile Map',
  //             text: 'DONE - Goal: load finite state machine starter code as a named game scene with text-labeled containers',(not fully encapsulated yet as the classes are defined outside of the FSM Scene)
               origin: { x: 0.5, y: 0.5 },
               style: {
@@ -709,10 +508,10 @@ var FSMScene = new Phaser.Class({
           });
             
           this.make.text({
-              x: 400,
+              x: 350,
               y: 350,
-              text: 'Goal: Add an object to touch to change scene to Game Over scene\nGoal: add code to change scene when sprite enters door of hut\nGoal: Figure out how to control sprites in labeled containers\nGoal: Could zones be used with this image to block walking into tree stumps and cliffs or is using a CSV map better since it is a goal anyway?',
-              origin: { x: 0.5, y: 0.5 },
+              text: 'Goal: add code to change scene to second floor when sprite climbs stairs\nGoal: Figure out how to control sprites in labeled containers\nGoal: Add elderly, balding male NPC\nGoal: Add number stamping station for NPC and Player\nGoal: add NPC dialogue with Player re: Waxy Ears',
+              origin: { x: 0.8, y: 0.5 },
               style: {
                   font: 'bold 12px Arial',
                   fill: 'white',
@@ -721,29 +520,28 @@ var FSMScene = new Phaser.Class({
           });
       
           this.make.text({
-              x: 400,
-              y: 460,
-              text: 'Sprite animations based on very slight modifications to Mark Kelly\'s phaser-fsm-example project on Glitch (https://www.mkelly.me/blog/phaser-finite-state-machine/)',
+              x: 260,
+              y: 500,
+              text: 'Sprite animations based on very slight modifications to Mark Kelly\'s phaser-fsm-example\nproject on Glitch (https://www.mkelly.me/blog/phaser-finite-state-machine/)',
   //     ',
               origin: { x: 0.5, y: 0.5 },
               style: {
-                  font: 'bold 25px Arial',
+                  font: 'bold 12px Times',
                   fill: 'white',
                   wordWrap: { width: 800 }
               }
           });
       
-//      text4 = this.add.text(200, 500, 'with text labeled containers with sprite animations based on slight modifications to Mark Kelly\'s phaser-fsm-example project on Glitch (https://www.mkelly.me/blog/phaser-finite-state-machine/)', { fontSize: 16, color: '#ff0000' }).setOrigin(0.5);
   //      test2 = this.add.text(250, 220, 'Phaser 3.21.0', { fontSize: 12, color: '#000000' }).setOrigin(0.5);
       // or chain calls 
       // this.add.text(100, 400, 'Phaser').setFontFamily('Arial').setFontSize(64).setColor('#ffff00');
       
           var nextScene = this.add.text(200, 520, 'NEXT SCENE >>>', {fontFamily: 'Arial', fontSize: 48, color: '#0000ff'}).setStroke ('0x0000ff',4);
           nextScene.setInteractive().on('pointerdown', function () {
-            this.scene.scene.start('gameOverScene');
+            this.scene.scene.start('secondFloor');
            });         
       // Create a nameplate for a sprite
-          var container2 = this.add.container(350, 200);
+          var container2 = this.add.container(370, 200);
           var genericBreederSprite = this.add.sprite(0, 0, 'author').play('McClintockdown');
           var text = this.add.text(0, -15, 'McClintock');
           text.font = "Arial";
@@ -767,9 +565,10 @@ var FSMScene = new Phaser.Class({
   */
  /////////////////////////////////////////////////////////////////////////////////////////     
 // This code was used in the-great-conversation-bots project which is why reference is made to Melville and author. Trying to change author to player has been problematic and involved changing the code in many lines but it didn't work.      
-      // Player clone of 'author' sprite to the left of McClintock container (on McClintock's right). 
-          this.author = this.physics.add.sprite(287, 200, 'author', 0).setCollideWorldBounds(true); // add collision boundaries on background image for trees,hedges, cliffs, etc.
-      // control this sprite as player if this.hero and no other this.hero assignment
+      // Player controllable clone of 'author' sprite to the left of McClintock container (on McClintock's right). 
+          this.author = this.physics.add.sprite(200, 250, 'author', 0).setCollideWorldBounds(true); // PLAYER
+      // add collision boundaries on background image for tables, walls, counter and other characters
+      // control this sprite as player if this.hero and no other this.hero assignment - we don't need another he row!
 // this.hero makes 'unnamed-author-clone' at (300,200) the player
 // this.author removes player control from unnamed-author-clone
       
@@ -777,7 +576,7 @@ var FSMScene = new Phaser.Class({
 //      this.author.direction = 'up'; // changes image of player sprite 'author' to hero sprite
 
       // no name NPC clone with author image (on McClintock's left) (east of McClintock (NESW clockwise) or on screen right side)
-          this.hero = this.physics.add.sprite(390, 270, 'author', 0); // 
+          this.hero = this.physics.add.sprite(460, 330, 'author', 0); // 
 // player control is granted to whichever sprite is this.hero with no other sprite as this.hero.
 // this.hero transfers player control to no name sprite 
   // animation for 'dash' and sword-swings uses 'hero' spritesheet since I don't have equivalents for author/RPG-walk-sprite
@@ -877,8 +676,11 @@ var FSMScene = new Phaser.Class({
     {
         this.stateMachine.step();
 //      this.physics.world.wrap(this.author);
+      // use this stairs to second floor change scene coordinates (540,  ) temporarily and change to collide with tile
+        if(((this.author.x > 520 && this.author.x < 560) && (this.author.y > 480 && this.author.y < 560))){
+           this.scene.start('secondFloor');
+        }
     }
-
 });
 // should these states be placed below config, within the FSM scene, or super or sub classed ????? 
 class IdleState extends State {
@@ -915,7 +717,7 @@ class MoveState extends State {
   execute(scene, author) {   //changed from author to container 2
     const {left, right, up, down, space, shift} = scene.keys;
     
-    // Transition to swing if pressing space
+    // Transition to swing if pressing space [change to stamping with numbering machine animation]
     if (space.isDown) {
       this.stateMachine.transition('swing');
       return;
@@ -954,7 +756,7 @@ class MoveState extends State {
     author.anims.play(`walk-${author.direction}`, true);
   }
 }
-
+// of all the Corona joints in the world, she walked into mine
 class SwingState extends State {
   enter(scene, hero) {    
     hero.setVelocity(0);
@@ -990,7 +792,249 @@ class DashState extends State {
     });
   }
 }
+var SecondFloor = new Phaser.Class({
+    Extends: Phaser.Scene,
+    initialize:
+    function SecondFloor ()
+    {
+      Phaser.Scene.call(this, { key: 'secondFloor', active: false });
+    },
+    preload()
+    {
+      this.load.image('floorplan', 'https://cdn.glitch.global/dad6f70b-d7f8-4b6b-812a-427943582a20/secretFloorplan6.png?v=1646417211569');
+//      this.load.image('quest', '');
+    },
 
+    create ()
+    { 
+      var titleline;
+      
+      this.secondFloor = this.add.sprite(400, 300, 'floorplan').setScale(0.3).setOrigin(0.5, 0.5);  // work on map scale and scrolling of room or camera follow player
+      titleline = this.add.text(350, 40, 'Building Interior - Second Floor', { fontSize: 16, color: '#ffffff' }).setOrigin(0.5); 
+      this.add.text(10, 350, 'La COCINA (Spanish)\nKitchen (Inglés)', { fontFamily: 'Arial', fontSize: 18, color: '#000000' });
+      this.add.text(10, 400, '- Katrin Becker\'s Gene Rummy pack on table\n(http://minkhollow.ca/gene-rummy/),\n How to Play Gene Rummy - The Novice Version\n(https://www.youtube.com/watch?v=RbkA7SeqSjY)\nbottle of water and vegan roast beef sandwich in refrigerator.', { fontFamily: 'Arial', fontSize: 12, color: '#ffff00' });
+      this.add.text(340, 350, 'Men\'s Washroom\n(unlocked)', { fontFamily: 'Arial', fontSize: 12, color: '#ffffff' }); 
+      this.add.text(340, 450, 'Women\'s \nWashroom\n(unlocked)', { fontFamily: 'Arial', fontSize: 12, color: '#ffffff' }); 
+      this.add.text(280, 80, 'Linux Terminal Server Project\nServer Room\(locked).', { fontFamily: 'Arial', fontSize: 18, color: '#000000' }); 
+      this.add.text(10, 80, 'Secretary/Admin Assistant\nRoom\n(locked)', { fontFamily: 'Arial', fontSize: 18, color: '#000000' });
+      this.add.text(10, 500, 'Door to garage area\nand stairs on east side\nof kitchen\n(locked)', { fontFamily: 'Arial', fontSize: 18, color: '#000000' });
+      this.add.text(600, 350, 'Conference Room', { fontFamily: 'Arial', fontSize: 18, color: '#000000' });
+      this.add.text(550, 400, 'Mentor Connections\n(live, delayed and automated)\nCorporate ExTRA(TM) System\nMMO SOLE Session Link\nImmersive Language Training\n(Chilean, Argentinian, Mexican)\nSupervised Courseroom', { fontFamily: 'Arial', fontSize: 18, color: '#000000' });
+      this.add.text(450, 400, 'STAIRS', { fontFamily: 'Arial', fontSize: 18, color: '#ff0000' });
+      this.add.text(370, 510, 'Secret Elevator to genetics lab', { fontFamily: 'Arial', fontSize: 12, color: '#000000' }); 
+      this.make.text({
+              x: 670,
+              y: 70,
+              text:'Research station manager\'s office\n(locked)\nPlant Breeder\'s office with poster of LINK on door is locked.\nEntrance to secret lab is locked. (Door at north end of N-S hallway - SHOWER)',
+              origin: { x: 0.5, y: 0.5 },
+              style: {
+                  font: 'bold 12px Times',
+                  fill: 'black',
+                  wordWrap: { width: 200 }
+              }
+          });
+              
+      var nextScene = this.add.text(200, 520, 'NEXT SCENE >>>', {fontFamily: 'Arial', fontSize: 48, color: '#0000ff'}).setStroke ('0x0000ff',4);
+          nextScene.setInteractive().on('pointerdown', function () {
+            this.scene.scene.start('castleBanquet');
+           });
+    }        
+});
+
+var CastleBanquet = new Phaser.Class({
+    Extends: Phaser.Scene,
+    initialize:
+    function CastleBanquet ()
+    {
+      Phaser.Scene.call(this, { key: 'castleBanquet', active: false });
+    },
+    preload()
+    {
+      this.load.image('banquet', 'https://upload.wikimedia.org/wikipedia/commons/7/7f/15th_century_feasting.jpg');
+      // https://upload.wikimedia.org/wikipedia/commons/c/c6/Abraham_Bosse%2C_Banquet_Given_by_the_King_to_the_New_Knights%2C_1633%2C_NGA_41804.jpg
+      
+    },
+
+    create ()
+    { 
+      var titleline;
+      
+      this.castleBanquet = this.add.sprite(400, 300, 'banquet').setScale(1.25).setOrigin(0.5, 0.5);  
+      titleline = this.add.text(350, 40, 'Level 1 Fantasy Sequence - Scene 1: Castle Banquet', { fontSize: 16, backgroundColor: '#000000', color: '#ffffff' }).setOrigin(0.5); 
+      var nextScene = this.add.text(200, 520, 'NEXT SCENE >>>', {fontFamily: 'Arial', fontSize: 48, color: '#0000ff'}).setStroke ('0x0000ff',4);
+          nextScene.setInteractive().on('pointerdown', function () {
+            this.scene.scene.start('fantasyOverworld');
+           });
+    }        
+});
+var FantasyOverworld = new Phaser.Class({
+    Extends: Phaser.Scene,
+    initialize:
+    function FantasyOverworld ()
+    {
+      Phaser.Scene.call(this, { key: 'fantasyOverworld', active: false });
+    },
+    preload()
+    {
+      this.load.image('ranges', 'https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2FAnnotatedInbreeding.png?v=1574374257475');
+    },
+
+    create ()
+    { 
+      var titleline;
+      
+      this.fantasyOverworld = this.add.sprite(400, 300, 'ranges').setScale(.5).setOrigin(0.5, 0.5);  
+      titleline = this.add.text(380, 40, 'Level 1 Fantasy Sequence - Scene 2: Fantasy Overworld', { fontSize: 16, color: '#000000' }).setOrigin(0.5); 
+      var nextScene = this.add.text(200, 520, 'NEXT SCENE >>>', {fontFamily: 'Arial', fontSize: 48, color: '#0000ff'}).setStroke ('0x0000ff',4);
+          nextScene.setInteractive().on('pointerdown', function () {
+            this.scene.scene.start('villageFestival');
+           });
+    }        
+});
+var VillageFestival = new Phaser.Class({
+    Extends: Phaser.Scene,
+    initialize:
+    function VillageFestival ()
+    {
+      Phaser.Scene.call(this, { key: 'villageFestival', active: false });
+    },
+    preload()
+    {
+      this.load.image('measuring', 'https://cdn.glitch.me/dad6f70b-d7f8-4b6b-812a-427943582a20%2FRangeTwoMeasured.png');
+    },
+
+    create ()
+    { 
+      var titleline;
+      
+      this.villageFestival = this.add.sprite(400, 300, 'measuring').setScale(.5).setOrigin(0.5, 0.5);  
+      titleline = this.add.text(380, 40, 'Level 1 Fantasy Sequence - Scene 3: Village Festival', { fontSize: 16, color: '#000000' }).setOrigin(0.5); 
+      var nextScene = this.add.text(200, 520, 'NEXT SCENE >>>', {fontFamily: 'Arial', fontSize: 48, color: '#0000ff'}).setStroke ('0x0000ff',4);
+          nextScene.setInteractive().on('pointerdown', function () {
+            this.scene.scene.start('castleStefan');
+           });
+    }        
+});
+var CastleStefan = new Phaser.Class({
+    Extends: Phaser.Scene,
+    initialize:
+    function CastleStefan ()
+    {
+      Phaser.Scene.call(this, { key: 'castleStefan', active: false });
+    },
+    preload()
+    {
+      this.load.image('nursery', 'https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2FInbreedingNurseryAll.png?v=1574374234675');
+    },
+
+    create ()
+    { 
+      var titleline;
+      
+      this.castleStefan = this.add.sprite(400, 300, 'nursery').setScale(.5).setOrigin(0.5, 0.5);  
+      titleline = this.add.text(380, 40, 'Level 1 Fantasy Sequence - Scene 4: Castle Stefan', { fontSize: 16, color: '#000000' }).setOrigin(0.5); 
+      var nextScene = this.add.text(200, 520, 'NEXT SCENE >>>', {fontFamily: 'Arial', fontSize: 48, color: '#0000ff'}).setStroke ('0x0000ff',4);
+          nextScene.setInteractive().on('pointerdown', function () {
+            this.scene.scene.start('secretGarden');
+           });
+    }        
+});
+var SecretGarden = new Phaser.Class({
+    Extends: Phaser.Scene,
+    initialize:
+    function SecretGarden ()
+    {
+      Phaser.Scene.call(this, { key: 'secretGarden', active: false });
+    },
+    preload()
+    {
+      
+      this.load.image('garden', 'https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2FTwoRanges.png?v=1574373854848');
+      this.load.image('chambordRose', 'https://upload.wikimedia.org/wikipedia/commons/3/32/Rosa_%27Comte_de_Chambord%27_J1.JPG');
+      this.load.image('reciprocalCrosses', 'https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2FCrossesR1multicolour.png?v=1574373372848');
+      this.load.image('whiteSweetpea', 'https://upload.wikimedia.org/wikipedia/commons/c/ce/Sweet_Pea-4.jpg');
+      this.load.image('xrayChambord', ' https://upload.wikimedia.org/wikipedia/commons/e/e6/Shaft_%2831594175%29.jpeg');
+    },
+//https://www.feelguide.com/2019/07/24/leonardo-da-vincis-french-castle-dna-staircase-the-secret-tunnel-to-the-chateau-where-he-died/
+// walled kitchen garden  https://www.saltwoodcastle.com/gallery 
+// https://audaxdesign.org/category/blickling-hall-rebirth-of-the-walled-garden/
+  
+    create ()
+    { 
+      var titleline;
+      
+      this.secretGarden = this.add.sprite(180, 220, 'garden').setScale(0.5).setOrigin(0.5, 0.5); 
+      this.subrosa = this.add.sprite(550, 220, 'chambordRose').setScale(0.1).setOrigin(0.5, 0.5);
+      this.crosses = this.add.sprite(580, 400, 'reciprocalCrosses').setScale(0.25).setOrigin(0.5, 0.5);
+      this.sweetpea = this.add.sprite(180, 500, 'whiteSweetpea').setScale(0.1).setOrigin(0.5, 0.5);
+      this.xray = this.add.sprite(380, 300, 'xrayChambord').setScale(0.1).setOrigin(0.5, 0.5);
+      titleline = this.add.text(380, 40, 'Level 1 Fantasy Sequence - Scene 5: Secret Garden', { fontSize: 16, backgroundColor: '#000000', color: '#ffff00' }).setOrigin(0.5); 
+      var nextScene = this.add.text(200, 520, 'NEXT SCENE >>>', {fontFamily: 'Arial', fontSize: 48, color: '#0000ff'}).setStroke ('0x0000ff',4);
+          nextScene.setInteractive().on('pointerdown', function () {
+            this.scene.scene.start('gameOverScene');
+           });
+    }        
+});
+/*
+var SecretLab = new Phaser.Class({
+    Extends: Phaser.Scene,
+    initialize:
+    function SecretLab ()
+    {
+      Phaser.Scene.call(this, { key: 'secretLab', active: false });
+    },
+    preload()
+    {
+      this.load.image('garden', 'https://cdn.glitch.com/dad6f70b-d7f8-4b6b-812a-427943582a20%2FTwoRanges.png?v=1574373854848');
+    },
+
+// https://www.youtube.com/watch?v=LvL5X6aG_Wc
+// // https://www.labster.com/
+
+// https://concord.org/teaching-genetics/dragons/
+
+// https://amino.bio/
+// https://amino.bio/pages/vbioengineer_canvas
+// https://amino.bio/pages/what-is-dna
+// https://vbioekit2020.s3-us-west-2.amazonaws.com/Vbioengineer_2020_2.1.html
+// 
+// https://store.steampowered.com/app/1286810/Mission_Biotech/
+// https://biomanbio.com/HTML5GamesandLabs/LifeChemgames/bioagenthtml5page.html
+// https://biomanbio.com/HTML5GamesandLabs/Genegames/genetics.html
+
+// https://learn.genetics.utah.edu/content/labs/
+
+// https://www.labxchange.org/
+// https://www.labxchange.org/library
+
+https://virtuallabs.merlot.org/vl_biology.html
+
+// http://star.mit.edu/genetics/
+// https://www.frontiersin.org/articles/10.3389/fgene.2019.01392/full
+
+// http://www.dnaftb.org/##
+
+https://dnalc.cshl.edu/
+
+// https://www.maizegdb.org/
+// https://ensembl.gramene.org/Zea_mays/Info/Index
+
+// https://www.emeraldcloudlab.com/
+// https://www.emeraldcloudlab.com/virtualtour/
+
+    create ()
+    { 
+      var titleline;
+      
+      this.secretLab = this.add.sprite(400, 300, 'garden').setOrigin(0.5, 0.5);  
+      titleline = this.add.text(380, 40, 'Secret Lab', { fontSize: 16, color: '#ffff00' }).setOrigin(0.5); 
+      var nextScene = this.add.text(200, 520, 'NEXT SCENE >>>', {fontFamily: 'Arial', fontSize: 48, color: '#0000ff'}).setStroke ('0x0000ff',4);
+          nextScene.setInteractive().on('pointerdown', function () {
+            this.scene.scene.start('gameOverScene');
+           });
+    }        
+});
+*/
 
 var GameOverScene = new Phaser.Class({
     Extends: Phaser.Scene,
@@ -1090,7 +1134,7 @@ var CreditsScene = new Phaser.Class({
                        "", 
                        "", 
                        "", 
-                       "CATCHER",
+           /*            "CATCHER",
           "Hi, I just wanted to thank you",
           "folks for putting up the field",
           "and letting us play here.",
@@ -1136,7 +1180,7 @@ var CreditsScene = new Phaser.Class({
          "",  
          "",  
          "",
-         "",
+         "",*/
          "Mitchy's Maize",
          "Production Coordinator",
          "Quasar Xeltentat", 
@@ -1144,7 +1188,9 @@ var CreditsScene = new Phaser.Class({
          "",
          "Background Images",
           "Webpage Background Image",
-          "https://commons.m.wikimedia.org/wiki/File:Maize_Maze_at_Metton_-_geograph.org.uk_-_24223.jpg",
+          "https://commons.m.wikimedia.org",
+          "/wiki/File:Maize_Maze_at_Metton_",
+          "-_geograph.org.uk_-_24223.jpg",
           "Author: Nick Pounder", 
           "Maize Maze at Metton",
           "CC BY-SA 2.0",
@@ -1182,24 +1228,31 @@ var CreditsScene = new Phaser.Class({
         "Sound Effects",
           "",             
          "Tilesets",
-          "Soil and Corn tileset(very slightly",
-          "modified) - creator Daniel Eddeland.",
-           "https://opengameart.org/content/lpc-farming-tilesets-magic-animations-and-ui-elements",
+          "Soil and Corn tileset",
+          "(very slightly modified)",
+          "creator: Daniel Eddeland",
+          "https://opengameart.org/content/",
+          "lpc-farming-tilesets-magic-animations-and-ui-elements",
+         "LPC Base Tileset",
+         "Lanea Zimmerman (AKA Sharm)",
          "",
          "Sprites",
-          "",
-          "",
+          "rpg_sprite_walk.png by arikel",
+          "on OpenGameArt.org",
+          "https://opengameart.org/content/2d-rpg-character-walk-spritesheet",
+         "",
          "Tile Maps",
          "",
          "Lead Programmer",
+         "",
          "Coders",
-         "Paul Gowan",
+         "Paul C. Gowan",
          "",
          "", 
          "",
          "",
          "",                                    
-                       "RAY",
+         /*              "RAY",
           "You catch a good game.",
 "",
                          "JOHN",
@@ -1314,7 +1367,7 @@ var CreditsScene = new Phaser.Class({
 "Genres :  Drama  Family  Fantasy",
 "",
                        "",
-                       "",
+  */                     "",
                        "",
                        "",
                        ""
@@ -1335,8 +1388,9 @@ var CreditsScene = new Phaser.Class({
             if (scroller.scrollY > 21000)
             {
                 scroller.scrollY = 0;
-            }
-    
+            } // else {
+ //           this.sys.game.destroy(true);
+//            } */
     }
 
 });
@@ -1374,7 +1428,7 @@ let config = {
     ]
   },
   */
-  scene: [ BootScene, MenuScene, OptionsScene, SceneMain, GameScene, FSMScene, GameOverScene, CreditsScene ] // adding Titlescene or SceneMain (the external scene file) to the list gives a SceneMain not defined error
+  scene: [ BootScene, MenuScene, OptionsScene, SceneMain, GameScene, FSMScene, SecondFloor, CastleBanquet, FantasyOverworld, VillageFestival, CastleStefan, SecretGarden, GameOverScene, CreditsScene ] // adding Titlescene or SceneMain (the external scene file) to the list gives a SceneMain not defined error
 };
 
 var content = null;

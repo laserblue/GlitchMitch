@@ -1,6 +1,3 @@
-// I suspect that the problem getting external scene files to run is connected to Express routing
-// it might be necessary to add Babel to get ES6 and import, export to work (???)
-// ES5 - script in head of index.html 
 // server.js
 // where your node app starts
 
@@ -13,23 +10,17 @@ const fs = require("fs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// var router = express.Router()
-
 // we've started you off with Express,
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
 
 // http://expressjs.com/en/starter/static-files.html
-// "Express looks up the files in the order in which you set the static directories with the express.static middleware function."
 
-// app.use(express.static(__dirname + "/js"));
+// This app.use code has no effect
+//app.use(express.static("/"));// was "public", should this be "/" or "app"? 
+//app.use(express.static("src")); // no effect
+//app.use(express.static("./src/scenes"));// no effect
 
-
-app.use(express.static("views")); 
-app.use(express.static("public")); //won't work with "/public" (white screen)
-app.use(express.static("js"));
-
-
-
+/*
 // init sqlite db
 const dbFile = "./.data/sqlite.db";
 const exists = fs.existsSync(dbFile);
@@ -59,12 +50,13 @@ db.serialize(() => {
     });
   }
 });
+*/
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", (request, response) => {
   response.sendFile(`${__dirname}/views/index.html`);
 });
-
+/*
 // endpoint to get all the dreams in the database
 app.get("/getDreams", (request, response) => {
   db.all("SELECT * from Dreams", (err, rows) => {
@@ -113,7 +105,7 @@ app.get("/clearDreams", (request, response) => {
     );
   }
 });
-
+*/
 // Serve up an un-minified Phaser direct from node_modules for development
 app.get('/phaser.js', function(request, response) {
   response.sendFile(__dirname + '/node_modules/phaser/dist/phaser.js');
